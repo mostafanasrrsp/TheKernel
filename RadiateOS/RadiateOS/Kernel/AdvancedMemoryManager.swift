@@ -1,6 +1,7 @@
 import Foundation
 
-// MARK: - Advanced Memory Manager
+// MARK: - Advanced Memory Manager with Free-Form Memory Architecture
+// Supports optical bandwidth distribution between RAM and Graphics processing
 class AdvancedMemoryManager: ObservableObject {
     @Published var physicalMemory: PhysicalMemory
     @Published var virtualMemory: VirtualMemory
@@ -9,12 +10,20 @@ class AdvancedMemoryManager: ObservableObject {
     @Published var swapSpace: SwapSpace
     @Published var memoryStats = MemoryStatistics()
     
+    // Free-form memory components
+    @Published var freeFormMemory: FreeFormMemory
+    @Published var bandwidthDistributor: BandwidthDistributor
+    @Published var opticalMemoryBus: OpticalMemoryBus
+    @Published var graphicsMemoryPool: GraphicsMemoryPool
+    
     private let pageSize: Int = 4096 // 4KB pages
     private let queue = DispatchQueue(label: "com.radiateos.memory", attributes: .concurrent)
     private var allocator: MemoryAllocator
     private var pageReplacementAlgorithm: PageReplacementAlgorithm
+    private let accessPanel: MemoryAccessPanel
     
     init(totalMemory: UInt64 = 4 * 1024 * 1024 * 1024) { // 4GB default
+        // Traditional memory components
         self.physicalMemory = PhysicalMemory(size: totalMemory, pageSize: pageSize)
         self.virtualMemory = VirtualMemory(addressSpace: 48) // 48-bit virtual address space
         self.pageTable = PageTable()
@@ -22,6 +31,81 @@ class AdvancedMemoryManager: ObservableObject {
         self.swapSpace = SwapSpace(size: totalMemory * 2) // 2x physical memory
         self.allocator = BuddyAllocator(memory: physicalMemory)
         self.pageReplacementAlgorithm = LRUReplacementAlgorithm()
+        
+        // Free-form memory architecture
+        self.freeFormMemory = FreeFormMemory(capacity: totalMemory)
+        self.bandwidthDistributor = BandwidthDistributor(
+            totalBandwidth: 50 * 1024 * 1024 * 1024 * 1024, // 50 TB/s total optical bandwidth
+            channels: 16 // 16 optical channels for parallel access
+        )
+        self.opticalMemoryBus = OpticalMemoryBus(
+            wavelength: 1550.0, // nm - telecommunications standard
+            channels: 16,
+            bandwidth: 50 * 1024 * 1024 * 1024 * 1024 // 50 TB/s
+        )
+        self.graphicsMemoryPool = GraphicsMemoryPool(
+            dedicatedMemory: totalMemory / 4, // 25% for graphics
+            sharedMemory: totalMemory / 4     // Additional 25% shared
+        )
+        self.accessPanel = MemoryAccessPanel()
+        
+        print("🧠 Advanced Memory Manager initialized with Free-Form Memory Architecture")
+        print("   • Total Memory: \(formatMemorySize(totalMemory))")
+        print("   • Optical Bandwidth: \(formatBandwidth(bandwidthDistributor.totalBandwidth))")
+        print("   • Graphics Pool: \(formatMemorySize(totalMemory / 2))")
+    }
+    
+    // MARK: - Free-Form Memory Management
+    
+    /// Configure bandwidth distribution between system RAM and graphics
+    func configureBandwidthDistribution(ramPercentage: Double, graphicsPercentage: Double) async throws {
+        guard ramPercentage + graphicsPercentage <= 100.0 else {
+            throw MemoryError.invalidBandwidthDistribution
+        }
+        
+        await bandwidthDistributor.reconfigure(
+            ramAllocation: ramPercentage / 100.0,
+            graphicsAllocation: graphicsPercentage / 100.0
+        )
+        
+        await opticalMemoryBus.updateChannelAllocation(
+            ramChannels: Int(Double(opticalMemoryBus.channels) * ramPercentage / 100.0),
+            graphicsChannels: Int(Double(opticalMemoryBus.channels) * graphicsPercentage / 100.0)
+        )
+        
+        print("🔄 Bandwidth distribution updated: RAM \(ramPercentage)%, Graphics \(graphicsPercentage)%")
+    }
+    
+    /// Access panel for manual bandwidth distribution control
+    func accessBandwidthPanel() -> BandwidthControlPanel {
+        return BandwidthControlPanel(
+            distributor: bandwidthDistributor,
+            memoryBus: opticalMemoryBus,
+            currentAllocation: getCurrentBandwidthAllocation()
+        )
+    }
+    
+    private func getCurrentBandwidthAllocation() -> BandwidthAllocation {
+        return BandwidthAllocation(
+            ramBandwidth: bandwidthDistributor.ramBandwidth,
+            graphicsBandwidth: bandwidthDistributor.graphicsBandwidth,
+            freeBandwidth: bandwidthDistributor.freeBandwidth,
+            utilizationRAM: bandwidthDistributor.ramUtilization,
+            utilizationGraphics: bandwidthDistributor.graphicsUtilization
+        )
+    }
+    
+    // MARK: - Graphics Memory Management
+    
+    /// Allocate dedicated graphics memory with optical acceleration
+    func allocateGraphicsMemory(size: UInt64, type: GraphicsMemoryType) async throws -> GraphicsMemoryRegion {
+        return try await graphicsMemoryPool.allocate(size: size, type: type, opticalBus: opticalMemoryBus)
+    }
+    
+    /// Free graphics memory and return bandwidth to pool
+    func freeGraphicsMemory(region: GraphicsMemoryRegion) async {
+        await graphicsMemoryPool.deallocate(region: region)
+        await bandwidthDistributor.returnGraphicsBandwidth(region.allocatedBandwidth)
     }
     
     // MARK: - Memory Allocation
@@ -722,4 +806,418 @@ struct MemoryInfo {
     let swapUsed: UInt64
     let pageSize: Int
     let statistics: MemoryStatistics
+    
+    // Free-form memory additions
+    let freeFormCapacity: UInt64
+    let opticalBandwidth: UInt64
+    let graphicsMemoryTotal: UInt64
+    let graphicsMemoryUsed: UInt64
+    let bandwidthUtilization: Double
+}
+
+// MARK: - Free-Form Memory Architecture Support Types
+
+/// Free-form memory system with dynamic allocation capabilities
+class FreeFormMemory {
+    private let capacity: UInt64
+    private var regions: [FreeFormRegion] = []
+    private var fragmentationMap: [UInt64: Bool] = [:] // Address -> isAllocated
+    private let queue = DispatchQueue(label: "com.radiateos.freeform", attributes: .concurrent)
+    
+    init(capacity: UInt64) {
+        self.capacity = capacity
+        print("🔄 Free-Form Memory initialized with \(formatMemorySize(capacity)) capacity")
+    }
+    
+    func allocateRegion(size: UInt64, type: FreeFormRegionType) -> FreeFormRegion? {
+        return queue.sync(flags: .barrier) {
+            let address = findFreeAddress(size: size)
+            guard let addr = address else { return nil }
+            
+            let region = FreeFormRegion(
+                startAddress: addr,
+                size: size,
+                type: type,
+                allocationTime: Date()
+            )
+            
+            regions.append(region)
+            markAddressRange(start: addr, size: size, allocated: true)
+            
+            return region
+        }
+    }
+    
+    func deallocateRegion(_ region: FreeFormRegion) {
+        queue.sync(flags: .barrier) {
+            regions.removeAll { $0.id == region.id }
+            markAddressRange(start: region.startAddress, size: region.size, allocated: false)
+        }
+    }
+    
+    private func findFreeAddress(size: UInt64) -> UInt64? {
+        // Simplified free address finding
+        for address in stride(from: UInt64(0), to: capacity - size, by: 4096) {
+            if isAddressRangeFree(start: address, size: size) {
+                return address
+            }
+        }
+        return nil
+    }
+    
+    private func isAddressRangeFree(start: UInt64, size: UInt64) -> Bool {
+        for address in stride(from: start, to: start + size, by: 4096) {
+            if fragmentationMap[address] == true {
+                return false
+            }
+        }
+        return true
+    }
+    
+    private func markAddressRange(start: UInt64, size: UInt64, allocated: Bool) {
+        for address in stride(from: start, to: start + size, by: 4096) {
+            fragmentationMap[address] = allocated
+        }
+    }
+}
+
+/// Bandwidth distributor for optical memory channels
+actor BandwidthDistributor {
+    let totalBandwidth: UInt64 // bytes per second
+    let channels: Int
+    
+    private(set) var ramBandwidth: UInt64
+    private(set) var graphicsBandwidth: UInt64
+    private(set) var freeBandwidth: UInt64
+    
+    private(set) var ramUtilization: Double = 0.0
+    private(set) var graphicsUtilization: Double = 0.0
+    
+    private var bandwidthAllocations: [BandwidthAllocationRecord] = []
+    
+    init(totalBandwidth: UInt64, channels: Int) {
+        self.totalBandwidth = totalBandwidth
+        self.channels = channels
+        
+        // Default distribution: 60% RAM, 40% Graphics
+        self.ramBandwidth = UInt64(Double(totalBandwidth) * 0.6)
+        self.graphicsBandwidth = UInt64(Double(totalBandwidth) * 0.4)
+        self.freeBandwidth = 0
+        
+        print("🌊 Bandwidth Distributor: \(formatBandwidth(totalBandwidth)) across \(channels) channels")
+    }
+    
+    func reconfigure(ramAllocation: Double, graphicsAllocation: Double) {
+        let ramBW = UInt64(Double(totalBandwidth) * ramAllocation)
+        let graphicsBW = UInt64(Double(totalBandwidth) * graphicsAllocation)
+        let freeBW = totalBandwidth - ramBW - graphicsBW
+        
+        self.ramBandwidth = ramBW
+        self.graphicsBandwidth = graphicsBW
+        self.freeBandwidth = freeBW
+        
+        print("📊 Bandwidth reconfigured: RAM \(formatBandwidth(ramBW)), Graphics \(formatBandwidth(graphicsBW)), Free \(formatBandwidth(freeBW))")
+    }
+    
+    func allocateBandwidth(amount: UInt64, for type: BandwidthType) -> Bool {
+        switch type {
+        case .ram:
+            if amount <= ramBandwidth {
+                ramUtilization = min(1.0, ramUtilization + (Double(amount) / Double(ramBandwidth)))
+                return true
+            }
+        case .graphics:
+            if amount <= graphicsBandwidth {
+                graphicsUtilization = min(1.0, graphicsUtilization + (Double(amount) / Double(graphicsBandwidth)))
+                return true
+            }
+        }
+        return false
+    }
+    
+    func returnRAMBandwidth(_ amount: UInt64) {
+        ramUtilization = max(0.0, ramUtilization - (Double(amount) / Double(ramBandwidth)))
+    }
+    
+    func returnGraphicsBandwidth(_ amount: UInt64) {
+        graphicsUtilization = max(0.0, graphicsUtilization - (Double(amount) / Double(graphicsBandwidth)))
+    }
+}
+
+/// Optical memory bus with wavelength division multiplexing
+struct OpticalMemoryBus {
+    let wavelength: Double // nm
+    let channels: Int
+    let bandwidth: UInt64  // bytes per second
+    
+    private var channelAllocations: [Int: ChannelAllocation] = [:]
+    
+    init(wavelength: Double, channels: Int, bandwidth: UInt64) {
+        self.wavelength = wavelength
+        self.channels = channels
+        self.bandwidth = bandwidth
+    }
+    
+    mutating func updateChannelAllocation(ramChannels: Int, graphicsChannels: Int) {
+        channelAllocations.removeAll()
+        
+        // Allocate channels for RAM
+        for i in 0..<ramChannels {
+            channelAllocations[i] = ChannelAllocation(type: .ram, wavelength: wavelength + Double(i) * 0.8)
+        }
+        
+        // Allocate channels for Graphics
+        for i in ramChannels..<(ramChannels + graphicsChannels) {
+            channelAllocations[i] = ChannelAllocation(type: .graphics, wavelength: wavelength + Double(i) * 0.8)
+        }
+        
+        print("🌈 Optical channels allocated: \(ramChannels) RAM, \(graphicsChannels) Graphics")
+    }
+    
+    func getChannelInfo() -> [ChannelInfo] {
+        return channelAllocations.map { (channel, allocation) in
+            ChannelInfo(
+                channel: channel,
+                type: allocation.type,
+                wavelength: allocation.wavelength,
+                utilization: 0.0 // Simplified
+            )
+        }
+    }
+}
+
+/// Graphics memory pool with dedicated and shared regions
+class GraphicsMemoryPool {
+    private let dedicatedMemory: UInt64
+    private let sharedMemory: UInt64
+    private var dedicatedRegions: [GraphicsMemoryRegion] = []
+    private var sharedRegions: [GraphicsMemoryRegion] = []
+    private let queue = DispatchQueue(label: "com.radiateos.graphics.memory", attributes: .concurrent)
+    
+    init(dedicatedMemory: UInt64, sharedMemory: UInt64) {
+        self.dedicatedMemory = dedicatedMemory
+        self.sharedMemory = sharedMemory
+        print("🎮 Graphics Memory Pool: \(formatMemorySize(dedicatedMemory)) dedicated + \(formatMemorySize(sharedMemory)) shared")
+    }
+    
+    func allocate(size: UInt64, type: GraphicsMemoryType, opticalBus: OpticalMemoryBus) async throws -> GraphicsMemoryRegion {
+        return try await withCheckedThrowingContinuation { continuation in
+            queue.async(flags: .barrier) {
+                let region = GraphicsMemoryRegion(
+                    id: UUID(),
+                    startAddress: self.findFreeGraphicsAddress(size: size, type: type),
+                    size: size,
+                    type: type,
+                    allocatedBandwidth: size * 1000, // Simplified bandwidth calculation
+                    wavelength: opticalBus.wavelength,
+                    isOpticalAccelerated: true
+                )
+                
+                switch type {
+                case .framebuffer, .texture:
+                    self.dedicatedRegions.append(region)
+                case .vertex, .shader:
+                    self.sharedRegions.append(region)
+                }\n                continuation.resume(returning: region)
+            }
+        }
+    }
+    
+    func deallocate(region: GraphicsMemoryRegion) async {
+        await withCheckedContinuation { continuation in
+            queue.async(flags: .barrier) {
+                self.dedicatedRegions.removeAll { $0.id == region.id }
+                self.sharedRegions.removeAll { $0.id == region.id }
+                continuation.resume()
+            }
+        }
+    }
+    
+    private func findFreeGraphicsAddress(size: UInt64, type: GraphicsMemoryType) -> UInt64 {
+        // Simplified address allocation for graphics memory
+        switch type {
+        case .framebuffer, .texture:
+            return UInt64(dedicatedRegions.count) * size
+        case .vertex, .shader:
+            return dedicatedMemory + UInt64(sharedRegions.count) * size
+        }
+    }
+}
+
+// MARK: - Memory Access Panel
+
+/// Physical access panel for bandwidth distribution control
+struct MemoryAccessPanel {
+    private var isPhysicalPanelOpen: Bool = false
+    private var lastAccess: Date = Date()
+    
+    func openAccessPanel() -> AccessPanelInterface {
+        return AccessPanelInterface(
+            isOpen: true,
+            availableControls: [
+                .bandwidthSlider,
+                .channelSelector,
+                .memoryTypeToggle,
+                .performanceMonitor,
+                .overclockSwitch
+            ]
+        )
+    }
+    
+    mutating func applyPhysicalConfiguration(_ config: PhysicalMemoryConfig) {
+        lastAccess = Date()
+        isPhysicalPanelOpen = true
+        print("🎛️ Physical memory configuration applied")
+    }
+}
+
+// MARK: - Supporting Types and Enums
+
+enum FreeFormRegionType {
+    case system, graphics, cache, buffer, temporary
+}
+
+enum BandwidthType {
+    case ram, graphics
+}
+
+enum GraphicsMemoryType {
+    case framebuffer, texture, vertex, shader
+}
+
+enum AccessPanelControl {
+    case bandwidthSlider, channelSelector, memoryTypeToggle, performanceMonitor, overclockSwitch
+}
+
+struct FreeFormRegion {
+    let id = UUID()
+    let startAddress: UInt64
+    let size: UInt64
+    let type: FreeFormRegionType
+    let allocationTime: Date
+}
+
+struct BandwidthAllocationRecord {
+    let id = UUID()
+    let type: BandwidthType
+    let amount: UInt64
+    let allocatedAt: Date
+}
+
+struct ChannelAllocation {
+    let type: BandwidthType
+    let wavelength: Double
+}
+
+struct ChannelInfo {
+    let channel: Int
+    let type: BandwidthType
+    let wavelength: Double
+    let utilization: Double
+}
+
+struct GraphicsMemoryRegion {
+    let id: UUID
+    let startAddress: UInt64
+    let size: UInt64
+    let type: GraphicsMemoryType
+    let allocatedBandwidth: UInt64
+    let wavelength: Double
+    let isOpticalAccelerated: Bool
+}
+
+struct BandwidthAllocation {
+    let ramBandwidth: UInt64
+    let graphicsBandwidth: UInt64
+    let freeBandwidth: UInt64
+    let utilizationRAM: Double
+    let utilizationGraphics: Double
+}
+
+struct BandwidthControlPanel {
+    let distributor: BandwidthDistributor
+    let memoryBus: OpticalMemoryBus
+    let currentAllocation: BandwidthAllocation
+    
+    func adjustRAMBandwidth(percentage: Double) async {
+        let totalBW = await distributor.totalBandwidth
+        let newRAMBW = Double(totalBW) * (percentage / 100.0)
+        // Implementation would adjust bandwidth
+        print("🔧 RAM bandwidth adjusted to \(percentage)%")
+    }
+    
+    func adjustGraphicsBandwidth(percentage: Double) async {
+        let totalBW = await distributor.totalBandwidth
+        let newGraphicsBW = Double(totalBW) * (percentage / 100.0)
+        // Implementation would adjust bandwidth
+        print("🔧 Graphics bandwidth adjusted to \(percentage)%")
+    }
+}
+
+struct AccessPanelInterface {
+    let isOpen: Bool
+    let availableControls: [AccessPanelControl]
+    
+    func getControlDescription(_ control: AccessPanelControl) -> String {
+        switch control {
+        case .bandwidthSlider:
+            return "Dynamic bandwidth allocation between RAM and Graphics"
+        case .channelSelector:
+            return "Optical channel assignment for memory access"
+        case .memoryTypeToggle:
+            return "Switch between different memory access patterns"
+        case .performanceMonitor:
+            return "Real-time memory performance monitoring"
+        case .overclockSwitch:
+            return "Enable memory overclocking for enhanced performance"
+        }
+    }
+}
+
+struct PhysicalMemoryConfig {
+    let ramBandwidthPercentage: Double
+    let graphicsBandwidthPercentage: Double
+    let opticalChannels: Int
+    let overclockEnabled: Bool
+    let accessPattern: MemoryAccessPattern
+}
+
+enum MemoryAccessPattern {
+    case sequential, random, burst, interleaved
+}
+
+enum MemoryError: Error {
+    case invalidBandwidthDistribution
+    case insufficientBandwidth
+    case channelAllocationFailed
+    case opticalCalibrationRequired
+}
+
+// MARK: - Helper Functions
+
+private func formatMemorySize(_ bytes: UInt64) -> String {
+    let units = ["B", "KB", "MB", "GB", "TB", "PB"]
+    var size = Double(bytes)
+    var unitIndex = 0
+    
+    while size >= 1024 && unitIndex < units.count - 1 {
+        size /= 1024
+        unitIndex += 1
+    }
+    
+    return String(format: "%.1f %@", size, units[unitIndex])
+}
+
+private func formatBandwidth(_ bytesPerSecond: UInt64) -> String {
+    let bitsPerSecond = bytesPerSecond * 8
+    let units = ["bps", "Kbps", "Mbps", "Gbps", "Tbps", "Pbps"]
+    var rate = Double(bitsPerSecond)
+    var unitIndex = 0
+    
+    while rate >= 1024 && unitIndex < units.count - 1 {
+        rate /= 1024
+        unitIndex += 1
+    }
+    
+    return String(format: "%.1f %@", rate, units[unitIndex])
 }
