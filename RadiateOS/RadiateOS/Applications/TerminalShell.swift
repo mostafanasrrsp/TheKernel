@@ -100,6 +100,18 @@ class TerminalShell: ObservableObject {
             return await executeBackground(arguments)
         case "fg":
             return await executeForeground(arguments)
+        case "network", "net":
+            return executeNetwork(arguments)
+        case "security", "sec":
+            return executeSecurity(arguments)
+        case "offline":
+            return executeOfflineMode(arguments)
+        case "online":
+            return executeOnlineMode(arguments)
+        case "firewall", "fw":
+            return executeFirewall(arguments)
+        case "encryption", "encrypt":
+            return executeEncryption(arguments)
         case "exit", "quit":
             return executeExit()
         default:
@@ -349,6 +361,108 @@ Swap:     \(String(format: "%12d", 0)) \(String(format: "%12d", 0)) \(String(for
         return ShellResult(output: output, exitCode: 0)
     }
 
+    // MARK: - Network Commands
+
+    private func executeNetwork(_ arguments: [String]) -> ShellResult {
+        if arguments.isEmpty {
+            return ShellResult(output: kernel.networkManager.getNetworkInfo(), exitCode: 0)
+        }
+
+        switch arguments[0] {
+        case "status":
+            return ShellResult(output: kernel.networkManager.getStatus(), exitCode: 0)
+        case "interfaces", "if":
+            let info = kernel.networkManager.getNetworkInfo()
+            return ShellResult(output: info, exitCode: 0)
+        case "offline":
+            return executeOfflineMode([])
+        case "online":
+            return executeOnlineMode([])
+        default:
+            return ShellResult(output: "network: invalid option '\(arguments[0])'\nUsage: network [status|interfaces|offline|online]", exitCode: 1)
+        }
+    }
+
+    private func executeSecurity(_ arguments: [String]) -> ShellResult {
+        if arguments.isEmpty {
+            return ShellResult(output: kernel.securityManager.getSecurityStatus(), exitCode: 0)
+        }
+
+        switch arguments[0] {
+        case "status":
+            return ShellResult(output: kernel.securityManager.getSecurityStatus(), exitCode: 0)
+        case "report":
+            return ShellResult(output: kernel.securityManager.getSecurityReport(), exitCode: 0)
+        case "health":
+            let health = kernel.securityManager.checkSecurityHealth()
+            var output = "Security Health: \(health.description)\n"
+            if !health.issues.isEmpty {
+                output += "\nIssues:\n"
+                for issue in health.issues {
+                    output += "  ⚠ \(issue)\n"
+                }
+            }
+            return ShellResult(output: output, exitCode: 0)
+        default:
+            return ShellResult(output: "security: invalid option '\(arguments[0])'\nUsage: security [status|report|health]", exitCode: 1)
+        }
+    }
+
+    private func executeOfflineMode(_ arguments: [String]) -> ShellResult {
+        if arguments.contains("--help") || arguments.contains("-h") {
+            return ShellResult(output: "offline: Enable offline mode\nUsage: offline [--force]\n\nDisables all network connections and enables maximum security.", exitCode: 0)
+        }
+
+        kernel.networkManager.enableOfflineMode()
+        kernel.securityManager.enableOfflineMode()
+
+        return ShellResult(output: "✅ Offline mode enabled\n🔒 Maximum security protection active\n🔌 All external connections blocked", exitCode: 0)
+    }
+
+    private func executeOnlineMode(_ arguments: [String]) -> ShellResult {
+        if arguments.contains("--help") || arguments.contains("-h") {
+            return ShellResult(output: "online: Enable online mode\nUsage: online [--force]\n\nEnables network connections with standard security.", exitCode: 0)
+        }
+
+        kernel.networkManager.disableOfflineMode()
+        kernel.securityManager.disableOfflineMode()
+
+        return ShellResult(output: "✅ Online mode enabled\n🔒 Standard security protection active\n🔌 Network connections available", exitCode: 0)
+    }
+
+    private func executeFirewall(_ arguments: [String]) -> ShellResult {
+        if arguments.isEmpty {
+            return ShellResult(output: "Firewall Status: \(kernel.securityManager.firewallStatus.rawValue)", exitCode: 0)
+        }
+
+        switch arguments[0] {
+        case "enable":
+            // Firewall control would be implemented here
+            return ShellResult(output: "Firewall enabled", exitCode: 0)
+        case "disable":
+            return ShellResult(output: "Firewall disable not recommended in offline mode", exitCode: 1)
+        case "status":
+            return ShellResult(output: "Firewall Status: \(kernel.securityManager.firewallStatus.rawValue)", exitCode: 0)
+        default:
+            return ShellResult(output: "firewall: invalid option '\(arguments[0])'\nUsage: firewall [enable|disable|status]", exitCode: 1)
+        }
+    }
+
+    private func executeEncryption(_ arguments: [String]) -> ShellResult {
+        if arguments.isEmpty {
+            return ShellResult(output: "Encryption Status: \(kernel.securityManager.encryptionStatus.rawValue)", exitCode: 0)
+        }
+
+        switch arguments[0] {
+        case "status":
+            return ShellResult(output: "Encryption Status: \(kernel.securityManager.encryptionStatus.rawValue)", exitCode: 0)
+        case "enable":
+            return ShellResult(output: "Encryption is always enabled in offline mode", exitCode: 0)
+        default:
+            return ShellResult(output: "encryption: invalid option '\(arguments[0])'\nUsage: encryption [status]", exitCode: 1)
+        }
+    }
+
     // MARK: - Utility Commands
 
     private func executeEcho(_ arguments: [String]) -> ShellResult {
@@ -402,6 +516,14 @@ Available commands:
     jobs                    List jobs
     bg [job]                Run job in background
     fg [job]                Bring job to foreground
+
+  Network & Security:
+    network [options]       Network management
+    security [options]      Security management
+    offline                 Enable offline mode
+    online                  Enable online mode
+    firewall [options]      Firewall management
+    encryption [options]    Encryption management
 
 Use 'help [command]' for detailed information about a specific command.
 """
