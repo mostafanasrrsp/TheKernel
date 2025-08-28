@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Name</key>
+    <string>RadiateOS</string>
+    <key>Notes</key>
+    <string>RadiateOS - Optical Computing Operating System</string>
+    <key>Architecture</key>
+    <string>x86_64</string>
+    <key>Backend</key>
+    <string>qemu</string>
+    <key>System</key>
+    <dict>
+        <key>MemorySize</key>
+        <integer>4096</integer>
+        <key>CPUCount</key>
+        <integer>2</integer>
+        <key>BootDevice</key>
+        <string>hd</string>
+        <key>MachineProperties</key>
+        <dict>
+            <key>ForcePS2Controller</key>
+            <false/>
+        </dict>
+    </dict>
+    <key>Drives</key>
+    <array>
+        <dict>
+            <key>ImagePath</key>
+            <string>disk.qcow2</string>
+            <key>ImageType</key>
+            <string>qcow2</string>
+            <key>Interface</key>
+            <string>ide</string>
+            <key>Removable</key>
+            <false/>
+        </dict>
+    </array>
+    <key>Display</key>
+    <dict>
+        <key>DisplayCard</key>
+        <string>virtio-vga-gl</string>
+        <key>DisplayDownscaler</key>
+        <string>linear</string>
+        <key>DisplayUpscaler</key>
+        <string>linear</string>
+    </dict>
+    <key>Input</key>
+    <dict>
+        <key>InputLegacy</key>
+        <false/>
+        <key>InputInvert</key>
+        <false/>
+    </dict>
+    <key>Sound</key>
+    <dict>
+        <key>SoundCard</key>
+        <string>intel-hda</string>
+        <key>SoundEnabled</key>
+        <true/>
+    </dict>
+    <key>Network</key>
+    <dict>
+        <key>NetworkCard</key>
+        <string>rtl8139</string>
+        <key>NetworkEnabled</key>
+        <true/>
+        <key>NetworkMode</key>
+        <string>shared</string>
+    </dict>
+</dict>
+</plist>
