@@ -4,34 +4,80 @@
     "python": "3.13.3 (main, Apr  8 2025, 19:55:40) [GCC 14.2.0]",
     "cpu_count": 4,
     "memory_total_bytes": 16795742208,
-    "memory_available_bytes": 15643197440,
+    "memory_available_bytes": 15626764288,
     "cpu_logical_count": 4,
     "cpu_physical_cores": 4
   },
   "cpu": {
     "algorithm": "sha256",
-    "duration_s": 3.0,
-    "single_thread_bytes_per_sec": 1109452800.0,
-    "multi_process_bytes_per_sec": 4354757290.666667,
+    "duration_s": 2.0,
+    "single_thread_bytes_per_sec": 1111841280.0,
+    "multi_process_bytes_per_sec": 4394513408.0,
     "processes": 4,
-    "single_thread_human": "1.03 GB/s",
-    "multi_process_human": "4.06 GB/s"
+    "single_thread_human": "1.04 GB/s",
+    "multi_process_human": "4.09 GB/s"
   },
   "ram": {
     "buffer_size_bytes": 268435456,
-    "copy_bytes_per_sec": 19019095450.890057,
-    "write_bytes_per_sec": 27000885158.45268,
-    "read_bytes_per_sec": 2858788819.9860954,
-    "copy_human": "17.71 GB/s",
-    "write_human": "25.15 GB/s",
+    "copy_bytes_per_sec": 17978799871.227192,
+    "write_bytes_per_sec": 25810562997.66886,
+    "read_bytes_per_sec": 2856555404.0109196,
+    "copy_human": "16.74 GB/s",
+    "write_human": "24.04 GB/s",
     "read_human": "2.66 GB/s",
     "implementation": "numpy"
   },
   "network": {
-    "error": "HTTP Error 403: Forbidden"
+    "download_bits_per_sec": 616334445.2516782,
+    "upload_bits_per_sec": 467370337.6284074,
+    "ping_ms": 6.214,
+    "download_human": "73.47 MB/s",
+    "upload_human": "55.71 MB/s"
   },
   "gpu": {
     "available": false
   },
-  "memory_x_multiple": 17.712912942180463
+  "theoretical_baseline": {
+    "gpus": 72,
+    "cpus": 36,
+    "dual_link_bandwidth_tbps": 150.0,
+    "fast_memory_tb": 50.0,
+    "gpu_memory_tb": 25.0,
+    "gpu_mem_bandwidth_tbps": 600.0,
+    "cpu_memory_tb": 20.0,
+    "cpu_mem_bandwidth_tbps": 15.9,
+    "cpu_cores": 3500,
+    "fp4_tensor_pf": 1100.0,
+    "fp8_pf": 720.0,
+    "int8_pf": 23.0,
+    "fp16_pf": 360.0,
+    "tf32_pf": 180.0,
+    "fp32_pf": 6.0,
+    "fp64_tf": 0.1,
+    "port": "PCIe 7.0"
+  },
+  "scaled_configuration": {
+    "gpus": 22,
+    "cpus": 11,
+    "dual_link_bandwidth_tbps": 46.50000000000001,
+    "fast_memory_tb": 15.500000000000004,
+    "gpu_memory_tb": 7.750000000000002,
+    "gpu_mem_bandwidth_tbps": 186.00000000000003,
+    "cpu_memory_tb": 6.200000000000001,
+    "cpu_mem_bandwidth_tbps": 4.929000000000001,
+    "cpu_cores": 1085,
+    "fp4_tensor_pf": 803.0,
+    "fp8_pf": 525.6,
+    "int8_pf": 16.79,
+    "fp16_pf": 262.8,
+    "tf32_pf": 131.4,
+    "fp32_pf": 4.38,
+    "fp64_tf": 0.073,
+    "port": "PCIe 7.0",
+    "notes": {
+      "hardware_scale_down": 0.69,
+      "performance_loss": 0.27
+    }
+  },
+  "memory_x_multiple": 16.744062184567742
 }

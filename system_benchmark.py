@@ -282,6 +282,9 @@ def main():
     parser.add_argument("--cpu-seconds", type=float, default=3.0, help="Seconds per CPU sub-test")
     parser.add_argument("--net-timeout", type=int, default=60, help="Network timeout seconds")
     parser.add_argument("--ram-bytes", type=str, default=None, help="RAM buffer size (e.g., 256M, 1G)")
+    # Scaled hardware/perf modeling
+    parser.add_argument("--scale-down", type=float, default=0.69, help="Hardware scale-down fraction (0.67-0.71 → 69% default)")
+    parser.add_argument("--perf-retain", type=float, default=0.27, help="Performance retained fraction after scale-down (0.25-0.30 → 27% default)")
     args = parser.parse_args()
 
     # Parse RAM size override
@@ -300,12 +303,73 @@ def main():
         except Exception:
             print(f"Invalid --ram-bytes value: {args.ram_bytes}", file=sys.stderr)
 
+    # Baseline user-provided theoretical config (interpreted as maxima)
+    theoretical_baseline = {
+        "gpus": 72,
+        "cpus": 36,
+        "dual_link_bandwidth_tbps": 150.0,
+        "fast_memory_tb": 50.0,
+        "gpu_memory_tb": 25.0,
+        "gpu_mem_bandwidth_tbps": 600.0,
+        "cpu_memory_tb": 20.0,
+        "cpu_mem_bandwidth_tbps": 15.9,
+        "cpu_cores": 3500,
+        "fp4_tensor_pf": 1100.0,  # taking the lower bound in 1,400 | 1,100^2
+        "fp8_pf": 720.0,
+        "int8_pf": 23.0,
+        "fp16_pf": 360.0,
+        "tf32_pf": 180.0,
+        "fp32_pf": 6.0,
+        "fp64_tf": 0.1,  # 100 TFLOPS = 0.1 PFLOPS
+        "port": "PCIe 7.0",
+    }
+
+    def clamp(val, lo, hi):
+        return max(lo, min(hi, val))
+
+    scale_down = clamp(args.scale_down, 0.67, 0.71)
+    perf_retain = clamp(args.perf_retain, 0.25, 0.30)
+
+    def scaled_config(base: dict, hw_scale: float, perf_scale: float) -> dict:
+        # Hardware counts scale linearly by hw_scale; performance figures by perf_scale
+        sc = dict(base)
+        # Scale discrete counts
+        sc["gpus"] = max(1, int(round(base["gpus"] * (1.0 - hw_scale))))
+        sc["cpus"] = max(1, int(round(base["cpus"] * (1.0 - hw_scale))))
+        sc["cpu_cores"] = max(1, int(round(base["cpu_cores"] * (1.0 - hw_scale))))
+        # Scale capacities
+        sc["fast_memory_tb"] = base["fast_memory_tb"] * (1.0 - hw_scale)
+        sc["gpu_memory_tb"] = base["gpu_memory_tb"] * (1.0 - hw_scale)
+        sc["cpu_memory_tb"] = base["cpu_memory_tb"] * (1.0 - hw_scale)
+        # Scale bandwidths (assume interconnect scales with hardware presence)
+        sc["dual_link_bandwidth_tbps"] = base["dual_link_bandwidth_tbps"] * (1.0 - hw_scale)
+        sc["gpu_mem_bandwidth_tbps"] = base["gpu_mem_bandwidth_tbps"] * (1.0 - hw_scale)
+        sc["cpu_mem_bandwidth_tbps"] = base["cpu_mem_bandwidth_tbps"] * (1.0 - hw_scale)
+        # Scale performance separately (user’s performance loss vs hardware reduction)
+        sc["fp4_tensor_pf"] = base["fp4_tensor_pf"] * (1.0 - perf_scale)
+        sc["fp8_pf"] = base["fp8_pf"] * (1.0 - perf_scale)
+        sc["int8_pf"] = base["int8_pf"] * (1.0 - perf_scale)
+        sc["fp16_pf"] = base["fp16_pf"] * (1.0 - perf_scale)
+        sc["tf32_pf"] = base["tf32_pf"] * (1.0 - perf_scale)
+        sc["fp32_pf"] = base["fp32_pf"] * (1.0 - perf_scale)
+        sc["fp64_tf"] = base["fp64_tf"] * (1.0 - perf_scale)
+        sc["port"] = base["port"]
+        sc["notes"] = {
+            "hardware_scale_down": hw_scale,
+            "performance_loss": perf_scale,
+        }
+        return sc
+
+    scaled = scaled_config(theoretical_baseline, scale_down, perf_retain)
+
     results = {
         "system": gather_system_info(),
         "cpu": bench_cpu(duration_s=args.cpu_seconds),
         "ram": bench_ram(target_bytes=ram_bytes_override),
         "network": bench_network(timeout_s=args.net_timeout),
         "gpu": bench_gpu(),
+        "theoretical_baseline": theoretical_baseline,
+        "scaled_configuration": scaled,
     }
 
     # Memory X multiple
