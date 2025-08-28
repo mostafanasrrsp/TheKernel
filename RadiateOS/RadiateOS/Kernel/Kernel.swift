@@ -87,14 +87,16 @@ public final class Kernel: ObservableObject {
         await scheduler.terminateProcess(pid: pid, exitCode: 0)
     }
 
-    public func getSystemInfo() -> SystemInfo {
+    public func getSystemInfo() async -> SystemInfo {
         let memoryInfo = ram.getMemoryInfo()
         let processes = scheduler.listProcesses()
         let memoryStats = memoryInfo.statistics
+        let opticalStatus = cpu.getOpticalStatus()
+        let romStatus = await rom.getSystemStatus()
 
         return SystemInfo(
-            kernelVersion: "RadiateOS 1.0.0",
-            architecture: "Optical-x64",
+            kernelVersion: "RadiateOS 1.0.0 - x147x Optical Computing Platform",
+            architecture: "x147x-Optical with x43 Compatibility",
             uptime: Date().timeIntervalSince1970, // Simplified
             totalMemory: memoryInfo.totalPhysical,
             freeMemory: memoryInfo.freePhysical,
@@ -103,8 +105,89 @@ public final class Kernel: ObservableObject {
             cpuUsage: Double(scheduler.getSystemLoad()) * 100.0,
             memoryUsage: memoryStats.bytesAllocated > 0 ? Double(memoryStats.bytesAllocated) / Double(memoryInfo.totalPhysical) * 100.0 : 0.0,
             pageFaults: UInt64(memoryStats.pageFaults),
-            contextSwitches: scheduler.getContextSwitchCount()
+            contextSwitches: scheduler.getContextSwitchCount(),
+            // Optical computing metrics
+            opticalFrequency: opticalStatus.baseFrequency,
+            photonOperations: opticalStatus.totalPhotonOperations,
+            opticalBandwidth: opticalStatus.opticalBandwidth,
+            romSlots: romStatus.totalSlots,
+            romUtilization: romStatus.utilizationPercentage,
+            freeFormMemory: memoryInfo.freeFormCapacity
         )
+    }
+    
+    /// Get comprehensive optical system status
+    public func getOpticalSystemStatus() async -> OpticalSystemStatus {
+        let cpuStatus = cpu.getOpticalStatus()
+        let romStatus = await rom.getSystemStatus()
+        let memoryBandwidth = ram.accessBandwidthPanel().currentAllocation
+        
+        return OpticalSystemStatus(
+            cpuStatus: cpuStatus,
+            romStatus: romStatus,
+            memoryBandwidth: memoryBandwidth,
+            systemHealthScore: calculateSystemHealth(cpuStatus, romStatus, memoryBandwidth)
+        )
+    }
+    
+    /// Configure optical system for specific workload
+    public func configureOpticalSystem(workload: OpticalWorkloadType) async throws {
+        switch workload {
+        case .highPerformanceComputing:
+            // Optimize for computational tasks
+            try await ram.configureBandwidthDistribution(ramPercentage: 80.0, graphicsPercentage: 20.0)
+            print("🚀 Configured for High-Performance Computing")
+            
+        case .graphicsIntensive:
+            // Optimize for graphics processing
+            try await ram.configureBandwidthDistribution(ramPercentage: 40.0, graphicsPercentage: 60.0)
+            print("🎨 Configured for Graphics-Intensive workload")
+            
+        case .balanced:
+            // Balanced configuration
+            try await ram.configureBandwidthDistribution(ramPercentage: 60.0, graphicsPercentage: 40.0)
+            print("⚖️ Configured for Balanced workload")
+            
+        case .realTimeProcessing:
+            // Optimize for real-time processing
+            try await ram.configureBandwidthDistribution(ramPercentage: 70.0, graphicsPercentage: 30.0)
+            print("⏱️ Configured for Real-Time Processing")
+        }
+    }
+    
+    /// Perform optical system calibration
+    public func calibrateOpticalSystem() async throws {
+        print("🔧 Starting optical system calibration...")
+        
+        // Calibrate optical CPU
+        await cpu.powerOff()
+        try await cpu.powerOn()
+        print("   ✓ Optical CPU calibrated")
+        
+        // Recalibrate ROM modules
+        let romModules = await rom.list()
+        for module in romModules {
+            if module.isEjectable {
+                // Recalibrate ejectable modules
+                try await rom.eject(moduleId: module.id)
+                try await rom.insert(module: module)
+            }
+        }
+        print("   ✓ ROM modules recalibrated")
+        
+        // Reset bandwidth distribution
+        try await ram.configureBandwidthDistribution(ramPercentage: 60.0, graphicsPercentage: 40.0)
+        print("   ✓ Memory bandwidth recalibrated")
+        
+        print("✅ Optical system calibration complete")
+    }
+    
+    private func calculateSystemHealth(_ cpuStatus: OpticalCPUStatus, _ romStatus: ROMSystemStatus, _ memoryBandwidth: BandwidthAllocation) -> Double {
+        let cpuHealth = cpuStatus.thermalState == .optimal ? 1.0 : 0.7
+        let romHealth = romStatus.utilizationPercentage < 90.0 ? 1.0 : 0.8
+        let memoryHealth = (memoryBandwidth.utilizationRAM + memoryBandwidth.utilizationGraphics) < 1.8 ? 1.0 : 0.6
+        
+        return (cpuHealth + romHealth + memoryHealth) / 3.0 * 100.0
     }
 
     // MARK: - Private Methods
@@ -177,9 +260,25 @@ public struct SystemInfo {
     public let memoryUsage: Double
     public let pageFaults: UInt64
     public let contextSwitches: UInt64
+    
+    // Optical computing metrics
+    public let opticalFrequency: Double
+    public let photonOperations: UInt64
+    public let opticalBandwidth: UInt64
+    public let romSlots: Int
+    public let romUtilization: Double
+    public let freeFormMemory: UInt64
 
     public var memoryUsagePercentage: Double {
         return totalMemory > 0 ? Double(usedMemory) / Double(totalMemory) * 100.0 : 0.0
+    }
+    
+    public var opticalFrequencyTHz: Double {
+        return opticalFrequency / 1e12
+    }
+    
+    public var opticalBandwidthTBps: Double {
+        return Double(opticalBandwidth) / (1024 * 1024 * 1024 * 1024)
     }
 }
 
@@ -207,4 +306,56 @@ public struct ExecutionResult: Sendable, Hashable {
         self.instructionsRetired = instructionsRetired
         self.wallTimeNanoseconds = wallTimeNanoseconds
         }
+}
+
+// MARK: - Optical System Integration Types
+
+public struct OpticalSystemStatus {
+    public let cpuStatus: OpticalCPUStatus
+    public let romStatus: ROMSystemStatus
+    public let memoryBandwidth: BandwidthAllocation
+    public let systemHealthScore: Double
+    
+    public var isSystemHealthy: Bool {
+        return systemHealthScore >= 80.0
+    }
+    
+    public var performanceRating: PerformanceRating {
+        if systemHealthScore >= 95.0 {
+            return .exceptional
+        } else if systemHealthScore >= 85.0 {
+            return .excellent
+        } else if systemHealthScore >= 70.0 {
+            return .good
+        } else if systemHealthScore >= 50.0 {
+            return .fair
+        } else {
+            return .poor
+        }
+    }
+}
+
+public enum OpticalWorkloadType {
+    case highPerformanceComputing
+    case graphicsIntensive
+    case balanced
+    case realTimeProcessing
+}
+
+public enum PerformanceRating: String {
+    case exceptional = "Exceptional"
+    case excellent = "Excellent"
+    case good = "Good"
+    case fair = "Fair"
+    case poor = "Poor"
+    
+    public var emoji: String {
+        switch self {
+        case .exceptional: return "🌟"
+        case .excellent: return "⭐"
+        case .good: return "👍"
+        case .fair: return "👌"
+        case .poor: return "⚠️"
+        }
+    }
 }
