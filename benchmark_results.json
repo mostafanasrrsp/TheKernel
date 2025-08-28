@@ -1,0 +1,37 @@
+{
+  "system": {
+    "platform": "Linux-6.1.147-x86_64-with-glibc2.41",
+    "python": "3.13.3 (main, Apr  8 2025, 19:55:40) [GCC 14.2.0]",
+    "cpu_count": 4,
+    "memory_total_bytes": 16795742208,
+    "memory_available_bytes": 15643197440,
+    "cpu_logical_count": 4,
+    "cpu_physical_cores": 4
+  },
+  "cpu": {
+    "algorithm": "sha256",
+    "duration_s": 3.0,
+    "single_thread_bytes_per_sec": 1109452800.0,
+    "multi_process_bytes_per_sec": 4354757290.666667,
+    "processes": 4,
+    "single_thread_human": "1.03 GB/s",
+    "multi_process_human": "4.06 GB/s"
+  },
+  "ram": {
+    "buffer_size_bytes": 268435456,
+    "copy_bytes_per_sec": 19019095450.890057,
+    "write_bytes_per_sec": 27000885158.45268,
+    "read_bytes_per_sec": 2858788819.9860954,
+    "copy_human": "17.71 GB/s",
+    "write_human": "25.15 GB/s",
+    "read_human": "2.66 GB/s",
+    "implementation": "numpy"
+  },
+  "network": {
+    "error": "HTTP Error 403: Forbidden"
+  },
+  "gpu": {
+    "available": false
+  },
+  "memory_x_multiple": 17.712912942180463
+}
