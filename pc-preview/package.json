@@ -1,0 +1,38 @@
+{
+  "name": "radiateos-preview",
+  "version": "0.1.0",
+  "private": true,
+  "description": "RadiateOS Preview for Windows/Linux (non-native)",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "build:win": "electron-builder -w",
+    "build:linux": "electron-builder -l",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "author": "RadiateOS Team",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "30.0.9",
+    "electron-builder": "24.13.3"
+  },
+  "build": {
+    "appId": "com.radiateos.preview",
+    "productName": "RadiateOS Preview",
+    "files": [
+      "src/**/*",
+      "assets/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": ["nsis"],
+      "icon": "assets/icon.ico"
+    },
+    "linux": {
+      "target": ["AppImage"],
+      "category": "Utility",
+      "icon": "assets/icons/png"
+    }
+  }
+}
+

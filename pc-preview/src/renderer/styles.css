@@ -1,0 +1,58 @@
+@font-face {
+  font-family: Inter;
+  src: local('Inter'), local('system-ui');
+}
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+    Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji",
+    "Segoe UI Emoji";
+  background: radial-gradient(1200px 800px at 20% 10%, #172135, #0b0f1a);
+  color: #dbe7ff;
+}
+.container {
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  align-items: center;
+  justify-items: center;
+  gap: 24px;
+  padding: 32px;
+}
+.logo {
+  font-weight: 800;
+  font-size: 48px;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, #8ab4ff, #c1d3ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.tag {
+  opacity: 0.8;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(240px, 1fr));
+  gap: 16px;
+  width: 100%;
+  max-width: 720px;
+}
+.card {
+  display: block;
+  padding: 16px 20px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  color: inherit;
+  text-decoration: none;
+  transition: all 160ms ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.10);
+}
+.footer {
+  opacity: 0.6;
+}
+
