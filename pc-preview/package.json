@@ -1,0 +1,17 @@
+{
+  "name": "radiateos-pc-preview",
+  "version": "0.1.0",
+  "description": "RadiateOS PC Preview (Electron) for HP Pavilion / Intel / NVIDIA",
+  "main": "src/main.js",
+  "author": "RadiateOS",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "build": "electron-builder --linux AppImage --win portable"
+  },
+  "devDependencies": {
+    "electron": "^30.0.0",
+    "electron-builder": "^24.13.3"
+  }
+}
