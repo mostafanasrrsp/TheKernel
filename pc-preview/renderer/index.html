@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RadiateOS – PC Preview</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>RadiateOS</h1>
+        <p class="tag">PC Preview</p>
+      </header>
+      <section class="hardware" id="hardware">
+        <div class="card">
+          <h2>Hardware</h2>
+          <div id="hw-content">Detecting hardware...</div>
+        </div>
+        <div class="card">
+          <h2>Graphics</h2>
+          <div id="gpu">Detecting NVIDIA...</div>
+        </div>
+      </section>
+      <section class="actions">
+        <button id="refresh">Refresh</button>
+        <button id="kiosk">Toggle Kiosk</button>
+      </section>
+    </div>
+    <script>
+      async function loadHW() {
+        const hw = await window.radiate.getHardwareInfo();
+        const hwEl = document.getElementById('hw-content');
+        hwEl.innerHTML = `
+          <div><strong>CPU</strong>: ${hw.cpuModel} (${hw.cpuCores} cores, ${hw.arch})</div>
+          <div><strong>OS</strong>: ${hw.platform} ${hw.osRelease}</div>
+          <div><strong>Memory</strong>: ${hw.memoryFreeGB} / ${hw.memoryGB} GB free</div>
+        `;
+        const gpuEl = document.getElementById('gpu');
+        if (hw.nvidia) {
+          gpuEl.innerHTML = `
+            <div><strong>GPU</strong>: ${hw.nvidia.name}</div>
+            <div><strong>Driver</strong>: ${hw.nvidia.driver}</div>
+            <div><strong>Memory</strong>: ${hw.nvidia.memoryTotal}</div>
+          `;
+        } else {
+          gpuEl.textContent = 'NVIDIA not detected. Install proprietary drivers.';
+        }
+      }
+      document.getElementById('refresh').addEventListener('click', loadHW);
+      document.getElementById('kiosk').addEventListener('click', () => {
+        // Placeholder for kiosk toggle handled by systemd service in production
+        alert('Kiosk mode is configured via system service on PC builds.');
+      });
+      loadHW();
+    </script>
+  </body>
+  </html>
+
