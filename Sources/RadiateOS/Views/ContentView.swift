@@ -22,7 +22,9 @@ public struct ContentView: View {
                 mainArea
             }
             .background(RadiateColors.background(for: scheme))
+            #if os(iOS)
             .toolbarBackground(.hidden, for: .navigationBar)
+            #endif
             .navigationTitle(titleForModule(appState.activeModule))
         }
     }

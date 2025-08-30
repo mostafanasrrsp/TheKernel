@@ -48,7 +48,7 @@ public struct RadiateIconButton: View {
                 .frame(width: 36, height: 36)
                 .background(RadiateColors.surfaceSecondary(for: scheme))
         }
-        .clipShape(kind == .circle ? Circle() : RoundedRectangle(cornerRadius: RadiateRadius.md, style: .continuous))
+        .clipShape(RoundedRectangle(cornerRadius: kind == .circle ? 18 : RadiateRadius.md, style: .continuous))
         .buttonStyle(.plain)
         .overlay(
             RoundedRectangle(cornerRadius: RadiateRadius.md, style: .continuous)
@@ -71,7 +71,7 @@ public struct RadiateCard<Content: View>: View {
             .padding(RadiateSpacing.lg)
             .background(RadiateColors.surface(for: scheme))
             .clipShape(RoundedRectangle(cornerRadius: RadiateRadius.lg, style: .continuous))
-            .radiateShadow(.level1)
+            .radiateShadow(RadiateShadow.level1)
     }
 }
 

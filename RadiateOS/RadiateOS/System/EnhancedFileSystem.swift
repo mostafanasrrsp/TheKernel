@@ -32,7 +32,7 @@ class EnhancedFileSystem: ObservableObject {
         case socket = "s"
     }
 
-    public enum FilePermission: OptionSet {
+    public struct FilePermission: OptionSet {
         public let rawValue: UInt16
 
         public init(rawValue: UInt16) {
@@ -70,13 +70,13 @@ class EnhancedFileSystem: ObservableObject {
     public struct FileAttributes {
         public let inode: UInt64
         public let type: FileType
-        public let size: UInt64
-        public let permissions: FilePermission
+        public var size: UInt64
+        public var permissions: FilePermission
         public let uid: UInt32
         public let gid: UInt32
         public let accessTime: Date
-        public let modificationTime: Date
-        public let changeTime: Date
+        public var modificationTime: Date
+        public var changeTime: Date
         public let birthTime: Date
         public let nlink: UInt32
         public let blockSize: UInt32

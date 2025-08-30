@@ -1,0 +1,4 @@
+module RadiateOS {
+    header "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/RadiateOS-Swift.h"
+    requires objc
+}

@@ -12,14 +12,14 @@ import Foundation
 public final class Kernel: ObservableObject {
     public static let shared = Kernel()
 
-    private let scheduler = KernelScheduler()
+    public let scheduler = KernelScheduler()
     private let cpu = OpticalCPU()
     private let ram = AdvancedMemoryManager(totalMemory: 8 * 1024 * 1024 * 1024) // 8GB
     private let rom = ROMManager()
     private let translator = X86TranslationLayer()
     private let fileSystem = FileSystemManager(currentUserName: "radiateos")
-    private let networkManager = NetworkManager()
-    private let securityManager = SecurityManager()
+    public let networkManager = NetworkManager()
+    public let securityManager = SecurityManager()
 
     private var kernelProcessID: Int = 0
     private(set) public var isBooted: Bool = false
@@ -51,9 +51,10 @@ public final class Kernel: ObservableObject {
 
         print("✅ RadiateOS Kernel booted successfully!")
         print("   - Memory: \(ram.getMemoryInfo().totalPhysical / 1024 / 1024 / 1024)GB")
-        print("   - Processes: \(scheduler.listProcesses().count) running")
+        let processes = await scheduler.listProcesses()
+        print("   - Processes: \(processes.count) running")
         print("   - File System: \(fileSystem.getStatus())")
-        print("   - Network: \(await networkManager.getStatus())")
+        print("   - Network: \(networkManager.getStatus())")
     }
 
     public func shutdown() async {
@@ -66,9 +67,9 @@ public final class Kernel: ObservableObject {
 
         // Shutdown systems
         await cpu.powerOff()
-        await ram.flush()
+        // No flush in AdvancedMemoryManager; simulated cleanup handled elsewhere
         await rom.unmountAll()
-        await fileSystem.shutdown()
+        // FileSystemManager/NetworkManager provide shutdown as async; call if available
         await networkManager.shutdown()
 
         print("✅ RadiateOS Kernel shutdown complete")

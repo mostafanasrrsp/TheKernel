@@ -3,22 +3,21 @@ import CoreData
 
 @main
 struct SimpleRadiateOSApp: App {
-    @StateObject private var kernel = Kernel()
-    @StateObject private var osManager = OSManager()
+    @StateObject private var kernel = Kernel.shared
+    @StateObject private var osManager = OSManager.shared
     @StateObject private var setupManager = SetupManager()
     
     var body: some Scene {
         WindowGroup {
             if setupManager.isFirstLaunch {
-                SetupWizardView(setupManager: setupManager, osManager: osManager)
+                SetupWizardView(isPresented: .constant(true))
                     .environmentObject(kernel)
             } else {
                 ContentView()
                     .environmentObject(kernel)
                     .environmentObject(osManager)
                     .onAppear {
-                        kernel.boot()
-                        osManager.initializeSystem()
+                        Task { try? await kernel.boot() }
                     }
             }
         }

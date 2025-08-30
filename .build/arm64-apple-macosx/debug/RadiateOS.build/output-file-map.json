@@ -1,0 +1,167 @@
+{
+  "": {
+    "swift-dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/master.swiftdeps"
+  },
+  "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/App/AppState.swift": {
+    "dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/AppState.d",
+    "object": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/AppState.swift.o",
+    "swiftmodule": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/AppState~partial.swiftmodule",
+    "swift-dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/AppState.swiftdeps"
+  },
+  "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/DesignSystem/Animations.swift": {
+    "dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Animations.d",
+    "object": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Animations.swift.o",
+    "swiftmodule": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Animations~partial.swiftmodule",
+    "swift-dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Animations.swiftdeps"
+  },
+  "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/DesignSystem/ColorPalette.swift": {
+    "dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ColorPalette.d",
+    "object": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ColorPalette.swift.o",
+    "swiftmodule": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ColorPalette~partial.swiftmodule",
+    "swift-dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ColorPalette.swiftdeps"
+  },
+  "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/DesignSystem/Components.swift": {
+    "dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Components.d",
+    "object": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Components.swift.o",
+    "swiftmodule": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Components~partial.swiftmodule",
+    "swift-dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Components.swiftdeps"
+  },
+  "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/DesignSystem/Spacing.swift": {
+    "dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Spacing.d",
+    "object": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Spacing.swift.o",
+    "swiftmodule": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Spacing~partial.swiftmodule",
+    "swift-dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Spacing.swiftdeps"
+  },
+  "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/DesignSystem/ThemeManager.swift": {
+    "dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ThemeManager.d",
+    "object": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ThemeManager.swift.o",
+    "swiftmodule": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ThemeManager~partial.swiftmodule",
+    "swift-dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ThemeManager.swiftdeps"
+  },
+  "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/DesignSystem/Typography.swift": {
+    "dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Typography.d",
+    "object": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Typography.swift.o",
+    "swiftmodule": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Typography~partial.swiftmodule",
+    "swift-dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Typography.swiftdeps"
+  },
+  "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Metrics/Metrics.swift": {
+    "dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Metrics.d",
+    "object": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Metrics.swift.o",
+    "swiftmodule": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Metrics~partial.swiftmodule",
+    "swift-dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Metrics.swiftdeps"
+  },
+  "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/AsyncLRUCache.swift": {
+    "dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/AsyncLRUCache.d",
+    "object": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/AsyncLRUCache.swift.o",
+    "swiftmodule": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/AsyncLRUCache~partial.swiftmodule",
+    "swift-dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/AsyncLRUCache.swiftdeps"
+  },
+  "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/AsyncSemaphore.swift": {
+    "dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/AsyncSemaphore.d",
+    "object": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/AsyncSemaphore.swift.o",
+    "swiftmodule": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/AsyncSemaphore~partial.swiftmodule",
+    "swift-dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/AsyncSemaphore.swiftdeps"
+  },
+  "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/BoundedExecutor.swift": {
+    "dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/BoundedExecutor.d",
+    "object": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/BoundedExecutor.swift.o",
+    "swiftmodule": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/BoundedExecutor~partial.swiftmodule",
+    "swift-dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/BoundedExecutor.swiftdeps"
+  },
+  "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/ByteBufferPool.swift": {
+    "dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ByteBufferPool.d",
+    "object": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ByteBufferPool.swift.o",
+    "swiftmodule": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ByteBufferPool~partial.swiftmodule",
+    "swift-dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ByteBufferPool.swiftdeps"
+  },
+  "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/Debouncer.swift": {
+    "dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Debouncer.d",
+    "object": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Debouncer.swift.o",
+    "swiftmodule": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Debouncer~partial.swiftmodule",
+    "swift-dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Debouncer.swiftdeps"
+  },
+  "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/InFlightTaskCoalescer.swift": {
+    "dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/InFlightTaskCoalescer.d",
+    "object": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/InFlightTaskCoalescer.swift.o",
+    "swiftmodule": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/InFlightTaskCoalescer~partial.swiftmodule",
+    "swift-dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/InFlightTaskCoalescer.swiftdeps"
+  },
+  "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/Throttler.swift": {
+    "dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Throttler.d",
+    "object": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Throttler.swift.o",
+    "swiftmodule": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Throttler~partial.swiftmodule",
+    "swift-dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Throttler.swiftdeps"
+  },
+  "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Security/Fail2BanManager.swift": {
+    "dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Fail2BanManager.d",
+    "object": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Fail2BanManager.swift.o",
+    "swiftmodule": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Fail2BanManager~partial.swiftmodule",
+    "swift-dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Fail2BanManager.swiftdeps"
+  },
+  "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Security/FirewallManager.swift": {
+    "dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/FirewallManager.d",
+    "object": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/FirewallManager.swift.o",
+    "swiftmodule": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/FirewallManager~partial.swiftmodule",
+    "swift-dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/FirewallManager.swiftdeps"
+  },
+  "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Security/IntrusionDetectionManager.swift": {
+    "dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/IntrusionDetectionManager.d",
+    "object": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/IntrusionDetectionManager.swift.o",
+    "swiftmodule": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/IntrusionDetectionManager~partial.swiftmodule",
+    "swift-dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/IntrusionDetectionManager.swiftdeps"
+  },
+  "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Security/ProcessIsolation.swift": {
+    "dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ProcessIsolation.d",
+    "object": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ProcessIsolation.swift.o",
+    "swiftmodule": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ProcessIsolation~partial.swiftmodule",
+    "swift-dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ProcessIsolation.swiftdeps"
+  },
+  "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Security/SecurityCore.swift": {
+    "dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/SecurityCore.d",
+    "object": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/SecurityCore.swift.o",
+    "swiftmodule": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/SecurityCore~partial.swiftmodule",
+    "swift-dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/SecurityCore.swiftdeps"
+  },
+  "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/BluetoothView.swift": {
+    "dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/BluetoothView.d",
+    "object": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/BluetoothView.swift.o",
+    "swiftmodule": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/BluetoothView~partial.swiftmodule",
+    "swift-dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/BluetoothView.swiftdeps"
+  },
+  "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/ContentView.swift": {
+    "dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ContentView.d",
+    "object": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ContentView.swift.o",
+    "swiftmodule": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ContentView~partial.swiftmodule",
+    "swift-dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ContentView.swiftdeps"
+  },
+  "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/DesktopEnvironmentView.swift": {
+    "dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/DesktopEnvironmentView.d",
+    "object": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/DesktopEnvironmentView.swift.o",
+    "swiftmodule": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/DesktopEnvironmentView~partial.swiftmodule",
+    "swift-dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/DesktopEnvironmentView.swiftdeps"
+  },
+  "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/FileManagerView.swift": {
+    "dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/FileManagerView.d",
+    "object": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/FileManagerView.swift.o",
+    "swiftmodule": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/FileManagerView~partial.swiftmodule",
+    "swift-dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/FileManagerView.swiftdeps"
+  },
+  "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/HotspotView.swift": {
+    "dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/HotspotView.d",
+    "object": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/HotspotView.swift.o",
+    "swiftmodule": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/HotspotView~partial.swiftmodule",
+    "swift-dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/HotspotView.swiftdeps"
+  },
+  "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/TerminalView.swift": {
+    "dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/TerminalView.d",
+    "object": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/TerminalView.swift.o",
+    "swiftmodule": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/TerminalView~partial.swiftmodule",
+    "swift-dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/TerminalView.swiftdeps"
+  },
+  "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/WiFiView.swift": {
+    "dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/WiFiView.d",
+    "object": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/WiFiView.swift.o",
+    "swiftmodule": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/WiFiView~partial.swiftmodule",
+    "swift-dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/WiFiView.swiftdeps"
+  }
+}

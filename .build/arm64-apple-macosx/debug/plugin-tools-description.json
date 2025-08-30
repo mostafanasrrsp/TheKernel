@@ -1,0 +1,1091 @@
+{
+  "builtTestProducts" : [
+    {
+      "binaryPath" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/TheKernelPackageTests.xctest/Contents/MacOS/TheKernelPackageTests",
+      "packagePath" : "/Users/mostafanasr/Desktop/TheKernel",
+      "productName" : "TheKernelPackageTests"
+    }
+  ],
+  "copyCommands" : {
+
+  },
+  "explicitTargetDependencyImportCheckingMode" : {
+    "none" : {
+
+    }
+  },
+  "generatedSourceTargetSet" : [
+
+  ],
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.RadiateOS-arm64-apple-macosx15.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/sources",
+      "importPath" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/App/AppState.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/DesignSystem/Animations.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/DesignSystem/ColorPalette.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/DesignSystem/Components.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/DesignSystem/Spacing.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/DesignSystem/ThemeManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/DesignSystem/Typography.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Metrics/Metrics.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/AsyncLRUCache.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/AsyncSemaphore.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/BoundedExecutor.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/ByteBufferPool.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/Debouncer.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/InFlightTaskCoalescer.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/Throttler.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Security/Fail2BanManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Security/FirewallManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Security/IntrusionDetectionManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Security/ProcessIsolation.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Security/SecurityCore.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/BluetoothView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/ContentView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/DesktopEnvironmentView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/FileManagerView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/HotspotView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/TerminalView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/WiFiView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "RadiateOS",
+      "moduleOutputPath" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/Modules/RadiateOS.swiftmodule",
+      "objects" : [
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/AppState.swift.o",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Animations.swift.o",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ColorPalette.swift.o",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Components.swift.o",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Spacing.swift.o",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ThemeManager.swift.o",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Typography.swift.o",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Metrics.swift.o",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/AsyncLRUCache.swift.o",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/AsyncSemaphore.swift.o",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/BoundedExecutor.swift.o",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ByteBufferPool.swift.o",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Debouncer.swift.o",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/InFlightTaskCoalescer.swift.o",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Throttler.swift.o",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Fail2BanManager.swift.o",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/FirewallManager.swift.o",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/IntrusionDetectionManager.swift.o",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ProcessIsolation.swift.o",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/SecurityCore.swift.o",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/BluetoothView.swift.o",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ContentView.swift.o",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/DesktopEnvironmentView.swift.o",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/FileManagerView.swift.o",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/HotspotView.swift.o",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/TerminalView.swift.o",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/WiFiView.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx13.0",
+        "-enable-batch-mode",
+        "-index-store-path",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-j8",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-module-cache-path",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/RadiateOS-Swift.h",
+        "-color-diagnostics",
+        "-swift-version",
+        "5",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g"
+      ],
+      "outputFileMapPath" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/AppState.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Animations.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ColorPalette.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Components.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Spacing.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ThemeManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Typography.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Metrics.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/AsyncLRUCache.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/AsyncSemaphore.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/BoundedExecutor.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ByteBufferPool.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Debouncer.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/InFlightTaskCoalescer.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Throttler.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Fail2BanManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/FirewallManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/IntrusionDetectionManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ProcessIsolation.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/SecurityCore.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/BluetoothView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ContentView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/DesktopEnvironmentView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/FileManagerView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/HotspotView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/TerminalView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/WiFiView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/Modules/RadiateOS.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/App/AppState.swift",
+        "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/DesignSystem/Animations.swift",
+        "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/DesignSystem/ColorPalette.swift",
+        "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/DesignSystem/Components.swift",
+        "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/DesignSystem/Spacing.swift",
+        "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/DesignSystem/ThemeManager.swift",
+        "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/DesignSystem/Typography.swift",
+        "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Metrics/Metrics.swift",
+        "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/AsyncLRUCache.swift",
+        "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/AsyncSemaphore.swift",
+        "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/BoundedExecutor.swift",
+        "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/ByteBufferPool.swift",
+        "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/Debouncer.swift",
+        "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/InFlightTaskCoalescer.swift",
+        "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/Throttler.swift",
+        "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Security/Fail2BanManager.swift",
+        "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Security/FirewallManager.swift",
+        "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Security/IntrusionDetectionManager.swift",
+        "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Security/ProcessIsolation.swift",
+        "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Security/SecurityCore.swift",
+        "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/BluetoothView.swift",
+        "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/ContentView.swift",
+        "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/DesktopEnvironmentView.swift",
+        "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/FileManagerView.swift",
+        "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/HotspotView.swift",
+        "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/TerminalView.swift",
+        "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/WiFiView.swift"
+      ],
+      "tempsPath" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.RadiateOSTests-arm64-apple-macosx15.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOSTests.build/sources",
+      "importPath" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Tests/RadiateOSTests/PerformancePrimitivesTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/Modules/RadiateOS.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOSTests.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "RadiateOSTests",
+      "moduleOutputPath" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/Modules/RadiateOSTests.swiftmodule",
+      "objects" : [
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOSTests.build/PerformancePrimitivesTests.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx14.0",
+        "-enable-batch-mode",
+        "-index-store-path",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-Xfrontend",
+        "-enable-cross-import-overlays",
+        "-j8",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-module-cache-path",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-color-diagnostics",
+        "-swift-version",
+        "5",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g"
+      ],
+      "outputFileMapPath" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOSTests.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOSTests.build/PerformancePrimitivesTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/Modules/RadiateOSTests.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/mostafanasr/Desktop/TheKernel/Tests/RadiateOSTests/PerformancePrimitivesTests.swift"
+      ],
+      "tempsPath" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOSTests.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.TheKernelPackageTests-arm64-apple-macosx15.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/TheKernelPackageTests.build/sources",
+      "importPath" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/TheKernelPackageTests.derived/runner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/Modules/RadiateOSTests.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/TheKernelPackageTests.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "TheKernelPackageTests",
+      "moduleOutputPath" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/Modules/TheKernelPackageTests.swiftmodule",
+      "objects" : [
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/TheKernelPackageTests.build/runner.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx13.0",
+        "-enable-batch-mode",
+        "-index-store-path",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-Xfrontend",
+        "-enable-cross-import-overlays",
+        "-j8",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-module-cache-path",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/TheKernelPackageTests.build/TheKernelPackageTests-Swift.h",
+        "-color-diagnostics",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g"
+      ],
+      "outputFileMapPath" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/TheKernelPackageTests.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/TheKernelPackageTests.build/runner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/Modules/TheKernelPackageTests.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/TheKernelPackageTests.derived/runner.swift"
+      ],
+      "tempsPath" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/TheKernelPackageTests.build",
+      "wholeModuleOptimization" : false
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "swiftTargetScanArgs" : {
+    "RadiateOS" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "RadiateOS",
+      "-incremental",
+      "-c",
+      "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/App/AppState.swift",
+      "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/DesignSystem/Animations.swift",
+      "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/DesignSystem/ColorPalette.swift",
+      "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/DesignSystem/Components.swift",
+      "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/DesignSystem/Spacing.swift",
+      "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/DesignSystem/ThemeManager.swift",
+      "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/DesignSystem/Typography.swift",
+      "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Metrics/Metrics.swift",
+      "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/AsyncLRUCache.swift",
+      "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/AsyncSemaphore.swift",
+      "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/BoundedExecutor.swift",
+      "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/ByteBufferPool.swift",
+      "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/Debouncer.swift",
+      "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/InFlightTaskCoalescer.swift",
+      "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/Throttler.swift",
+      "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Security/Fail2BanManager.swift",
+      "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Security/FirewallManager.swift",
+      "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Security/IntrusionDetectionManager.swift",
+      "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Security/ProcessIsolation.swift",
+      "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Security/SecurityCore.swift",
+      "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/BluetoothView.swift",
+      "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/ContentView.swift",
+      "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/DesktopEnvironmentView.swift",
+      "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/FileManagerView.swift",
+      "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/HotspotView.swift",
+      "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/TerminalView.swift",
+      "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/WiFiView.swift",
+      "-I",
+      "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx13.0",
+      "-enable-batch-mode",
+      "-index-store-path",
+      "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-j8",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-module-cache-path",
+      "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/RadiateOS-Swift.h",
+      "-color-diagnostics",
+      "-swift-version",
+      "5",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "RadiateOSTests" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "RadiateOSTests",
+      "-incremental",
+      "-c",
+      "/Users/mostafanasr/Desktop/TheKernel/Tests/RadiateOSTests/PerformancePrimitivesTests.swift",
+      "-I",
+      "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx14.0",
+      "-enable-batch-mode",
+      "-index-store-path",
+      "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-Xfrontend",
+      "-enable-cross-import-overlays",
+      "-j8",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-module-cache-path",
+      "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-color-diagnostics",
+      "-swift-version",
+      "5",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "TheKernelPackageTests" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "TheKernelPackageTests",
+      "-incremental",
+      "-c",
+      "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/TheKernelPackageTests.derived/runner.swift",
+      "-I",
+      "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx13.0",
+      "-enable-batch-mode",
+      "-index-store-path",
+      "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-Xfrontend",
+      "-enable-cross-import-overlays",
+      "-j8",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-module-cache-path",
+      "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/TheKernelPackageTests.build/TheKernelPackageTests-Swift.h",
+      "-color-diagnostics",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.5.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ]
+  },
+  "targetDependencyMap" : {
+    "RadiateOS" : [
+
+    ],
+    "RadiateOSTests" : [
+      "RadiateOS"
+    ],
+    "TheKernelPackageTests" : [
+      "RadiateOSTests",
+      "RadiateOS"
+    ]
+  },
+  "testDiscoveryCommands" : {
+
+  },
+  "testEntryPointCommands" : {
+    "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/TheKernelPackageTests.derived/runner.swift" : {
+      "inputs" : [
+
+      ],
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/TheKernelPackageTests.derived/runner.swift"
+        }
+      ]
+    }
+  },
+  "traitConfiguration" : {
+    "enableAllTraits" : false
+  },
+  "writeCommands" : {
+    "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/App/AppState.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/DesignSystem/Animations.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/DesignSystem/ColorPalette.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/DesignSystem/Components.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/DesignSystem/Spacing.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/DesignSystem/ThemeManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/DesignSystem/Typography.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Metrics/Metrics.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/AsyncLRUCache.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/AsyncSemaphore.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/BoundedExecutor.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/ByteBufferPool.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/Debouncer.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/InFlightTaskCoalescer.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Performance/Throttler.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Security/Fail2BanManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Security/FirewallManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Security/IntrusionDetectionManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Security/ProcessIsolation.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Security/SecurityCore.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/BluetoothView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/ContentView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/DesktopEnvironmentView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/FileManagerView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/HotspotView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/TerminalView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Sources/RadiateOS/Views/WiFiView.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/sources"
+    },
+    "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOSTests.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/Tests/RadiateOSTests/PerformancePrimitivesTests.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOSTests.build/sources"
+    },
+    "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/TheKernelPackageTests.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/TheKernelPackageTests.derived/runner.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/TheKernelPackageTests.build/sources"
+    },
+    "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/TheKernelPackageTests.product/Objects.LinkFileList" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<link-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Animations.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/AppState.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/AsyncLRUCache.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/AsyncSemaphore.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/BluetoothView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/BoundedExecutor.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ByteBufferPool.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ColorPalette.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Components.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ContentView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Debouncer.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/DesktopEnvironmentView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Fail2BanManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/FileManagerView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/FirewallManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/HotspotView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/InFlightTaskCoalescer.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/IntrusionDetectionManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Metrics.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ProcessIsolation.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/SecurityCore.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Spacing.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/TerminalView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/ThemeManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Throttler.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/Typography.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOS.build/WiFiView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOSTests.build/PerformancePrimitivesTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/TheKernelPackageTests.build/runner.swift.o"
+        }
+      ],
+      "outputFilePath" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/TheKernelPackageTests.product/Objects.LinkFileList"
+    },
+    "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt" : {
+      "alwaysOutOfDate" : true,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<swift-get-version>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+        }
+      ],
+      "outputFilePath" : "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+    }
+  }
+}

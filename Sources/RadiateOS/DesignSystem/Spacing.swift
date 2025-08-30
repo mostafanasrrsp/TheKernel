@@ -22,6 +22,7 @@ public enum RadiateRadius {
     public static let md: CGFloat = 12
     public static let lg: CGFloat = 16
     public static let pill: CGFloat = 999
+    public static let full: CGFloat = 999
 }
 
 public struct RadiateShadowSpec {

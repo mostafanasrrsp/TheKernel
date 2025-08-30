@@ -1,0 +1,11 @@
+{
+  "": {
+    "swift-dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOSTests.build/master.swiftdeps"
+  },
+  "/Users/mostafanasr/Desktop/TheKernel/Tests/RadiateOSTests/PerformancePrimitivesTests.swift": {
+    "dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOSTests.build/PerformancePrimitivesTests.d",
+    "object": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOSTests.build/PerformancePrimitivesTests.swift.o",
+    "swiftmodule": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOSTests.build/PerformancePrimitivesTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/RadiateOSTests.build/PerformancePrimitivesTests.swiftdeps"
+  }
+}

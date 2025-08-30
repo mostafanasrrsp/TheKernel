@@ -233,7 +233,11 @@ public class ProcessIsolation {
             case .writeFile(let path):
                 return fileSystem.canWrite(path: path)
             case .networkConnection:
-                return network != .none
+                if case .none = network {
+                    return false
+                } else {
+                    return true
+                }
             case .deviceAccess(let device):
                 return devices.allows(device)
             case .systemCall(let call):

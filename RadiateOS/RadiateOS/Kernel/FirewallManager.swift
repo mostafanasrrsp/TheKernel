@@ -317,7 +317,7 @@ class FirewallRule: ObservableObject, Identifiable {
     
     func matches(_ packet: NetworkPacket) -> Bool {
         // Check protocol
-        if let ruleProtocol = protocol, packet.protocol != ruleProtocol {
+        if let ruleProtocol = self.`protocol`, packet.`protocol` != ruleProtocol {
             return false
         }
         

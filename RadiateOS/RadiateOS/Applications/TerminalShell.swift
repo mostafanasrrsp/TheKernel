@@ -272,7 +272,7 @@ class TerminalShell: ObservableObject {
     }
 
     private func executeProcessList() async -> ShellResult {
-        let processes = kernel.scheduler.listProcesses()
+        let processes = await kernel.scheduler.listProcesses()
 
         var output = "  PID   USER     %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\n"
 
@@ -297,7 +297,7 @@ class TerminalShell: ObservableObject {
 
     private func executeTop() async -> ShellResult {
         let systemInfo = kernel.getSystemInfo()
-        let processes = kernel.scheduler.listProcesses()
+        let processes = await kernel.scheduler.listProcesses()
 
         var output = """
 RadiateOS Tasks: \(processes.count) total,   1 running, \(processes.filter { $0.state == .blocked }.count) sleeping,   0 stopped,   0 zombie
@@ -600,7 +600,7 @@ Use 'help [command]' for detailed information about a specific command.
         environmentVariables["PWD"] = currentDirectory
     }
 
-    private func formatPermissions(for item: FileItem) -> String {
+    private func formatPermissions(for item: EnhancedFileSystem.FileItem) -> String {
         var perms = ""
 
         if item.isDirectory {

@@ -1,0 +1,4 @@
+module TheKernelPackageTests {
+    header "/Users/mostafanasr/Desktop/TheKernel/.build/arm64-apple-macosx/debug/TheKernelPackageTests.build/TheKernelPackageTests-Swift.h"
+    requires objc
+}

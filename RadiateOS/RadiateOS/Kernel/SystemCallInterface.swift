@@ -12,14 +12,14 @@ class SystemCallInterface: ObservableObject {
     private let memoryManager: AdvancedMemoryManager
     private let processManager: ProcessManager
     private let fileSystem: FileSystemManager
-    private let networkManager: NetworkManager
+    private let networkManager: LegacyNetworkStack
     
     init(kernel: Kernel) {
         self.kernel = kernel
         self.memoryManager = AdvancedMemoryManager()
         self.processManager = ProcessManager()
-        self.fileSystem = FileSystemManager()
-        self.networkManager = NetworkManager()
+        self.fileSystem = FileSystemManager(currentUserName: "radiateos")
+        self.networkManager = LegacyNetworkStack()
         
         registerSystemCalls()
     }
@@ -683,9 +683,9 @@ class BrkHandler: SystemCallHandler {
 
 // Network Handlers
 class SocketHandler: SystemCallHandler {
-    let networkManager: NetworkManager
+    let networkManager: LegacyNetworkStack
     
-    init(networkManager: NetworkManager) {
+    init(networkManager: LegacyNetworkStack) {
         self.networkManager = networkManager
     }
     
@@ -696,14 +696,14 @@ class SocketHandler: SystemCallHandler {
 }
 
 class ConnectHandler: SystemCallHandler {
-    let networkManager: NetworkManager
+    let networkManager: LegacyNetworkStack
     
-    init(networkManager: NetworkManager) {
+    init(networkManager: LegacyNetworkStack) {
         self.networkManager = networkManager
     }
     
     func execute(args: SystemCallArguments) -> SystemCallResult {
-        guard let sockfd = args.int(at: 0),
+        guard let _ = args.int(at: 0),
               let address = args.string(at: 1),
               let port = args.int(at: 2) else {
             return .failure(.invalidArgument)
@@ -715,14 +715,14 @@ class ConnectHandler: SystemCallHandler {
 }
 
 class SendHandler: SystemCallHandler {
-    let networkManager: NetworkManager
+    let networkManager: LegacyNetworkStack
     
-    init(networkManager: NetworkManager) {
+    init(networkManager: LegacyNetworkStack) {
         self.networkManager = networkManager
     }
     
     func execute(args: SystemCallArguments) -> SystemCallResult {
-        guard let sockfd = args.int(at: 0),
+        guard let _ = args.int(at: 0),
               let data = args.data(at: 1) else {
             return .failure(.invalidArgument)
         }
@@ -733,14 +733,14 @@ class SendHandler: SystemCallHandler {
 }
 
 class RecvHandler: SystemCallHandler {
-    let networkManager: NetworkManager
+    let networkManager: LegacyNetworkStack
     
-    init(networkManager: NetworkManager) {
+    init(networkManager: LegacyNetworkStack) {
         self.networkManager = networkManager
     }
     
     func execute(args: SystemCallArguments) -> SystemCallResult {
-        guard let sockfd = args.int(at: 0),
+        guard let _ = args.int(at: 0),
               let size = args.int(at: 1) else {
             return .failure(.invalidArgument)
         }

@@ -353,7 +353,7 @@ public class FirewallManager {
     
     // MARK: - Types
     
-    public struct FirewallRule {
+    public struct FirewallRule: Equatable {
         let id = UUID()
         let name: String
         let priority: Int
@@ -381,20 +381,20 @@ public class FirewallManager {
         }
     }
     
-    public enum FirewallAction: String { case allow = "ALLOW"; case deny = "DENY"; case reject = "REJECT" }
-    public enum FirewallPolicy: String { case allow = "ALLOW"; case deny = "DENY" }
-    public enum FirewallLogLevel: String { case off = "OFF"; case low = "LOW"; case medium = "MEDIUM"; case high = "HIGH" }
+    public enum FirewallAction: String, Equatable { case allow = "ALLOW"; case deny = "DENY"; case reject = "REJECT" }
+    public enum FirewallPolicy: String, Equatable { case allow = "ALLOW"; case deny = "DENY" }
+    public enum FirewallLogLevel: String, Equatable { case off = "OFF"; case low = "LOW"; case medium = "MEDIUM"; case high = "HIGH" }
     
-    public enum NetworkProtocol: String { case tcp = "TCP"; case udp = "UDP"; case icmp = "ICMP"; case any = "ANY" }
+    public enum NetworkProtocol: String, Equatable { case tcp = "TCP"; case udp = "UDP"; case icmp = "ICMP"; case any = "ANY" }
     
-    public struct NetworkConnection {
+    public struct NetworkConnection: Equatable {
         let sourceIP: String
         let destinationIP: String
         let port: Int
         let `protocol`: NetworkProtocol
     }
     
-    public struct FirewallStatus {
+    public struct FirewallStatus: Equatable {
         let enabled: Bool
         let defaultPolicy: FirewallPolicy
         let activeRules: Int
@@ -458,12 +458,3 @@ fileprivate final class RateLimiter {
         }
     }
 }
-
-// MARK: - SecurityCore stub (if not linked in target, replace with your concrete implementation)
-
-public class SecurityCore {
-    public static let shared = SecurityCore()
-    public enum Severity { case info, warning, critical }
-    public func logSecurityEvent(_ message: String, severity: Severity) { /* Hook into your logging */ }
-}
-
