@@ -1,0 +1,9 @@
+polkit.addRule(function(action, subject) {
+  // Allow local sudo users to run radiate-gpu without a password
+  if (action && action.id === 'com.radiateos.radiate-gpu') {
+    if (subject && subject.isInGroup('sudo')) {
+      return polkit.Result.YES;
+    }
+  }
+});
+

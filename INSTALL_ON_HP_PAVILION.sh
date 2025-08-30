@@ -21,6 +21,7 @@ DEBIAN_FRONTEND=noninteractive apt-get install -y \
   git unzip alsa-utils pulseaudio psmisc \
   vulkan-tools mesa-utils libvulkan1 \
   chromium-browser firefox \
+  policykit-1 \
   python3-gi gir1.2-appindicator3-0.1 libayatana-appindicator3-1 \
   xterm \
   libnss3 libatk-bridge2.0-0 libgtk-3-0 libx11-xcb1 libxcomposite1 libxrandr2 \
@@ -81,6 +82,14 @@ if [ -f "$BASE_DIR/pc-install/nvidia_power_profile.sh" ]; then
 fi
 if [ -f "$BASE_DIR/pc-install/radiate_gpu_toggle.sh" ]; then
   install -m 0755 "$BASE_DIR/pc-install/radiate_gpu_toggle.sh" /usr/local/bin/radiate-gpu || true
+fi
+
+# Install polkit policy and rules to allow passwordless radiate-gpu for sudo users
+if [ -f "$BASE_DIR/pc-install/polkit/com.radiateos.radiate-gpu.policy" ]; then
+  install -m 0644 "$BASE_DIR/pc-install/polkit/com.radiateos.radiate-gpu.policy" /usr/share/polkit-1/actions/com.radiateos.radiate-gpu.policy || true
+fi
+if [ -f "$BASE_DIR/pc-install/polkit/90-radiate-gpu.rules" ]; then
+  install -m 0644 "$BASE_DIR/pc-install/polkit/90-radiate-gpu.rules" /etc/polkit-1/rules.d/90-radiate-gpu.rules || true
 fi
 
 # Apply GPU mode selection from wizard (if available)
