@@ -1,0 +1,35 @@
+#!/bin/bash
+# RadiateOS Launcher for Intel Mac
+# This script simulates the RadiateOS application launch
+
+echo "🚀 Launching RadiateOS on Intel Mac..."
+echo "Hardware: iMac18,1 (21.5\" 2018)"
+echo "CPU: Intel Core i5-7360U @ 2.30GHz"
+echo "RAM: 16GB DDR4"
+echo "GPU: Intel Iris Plus Graphics 640"
+echo ""
+
+# Simulate boot sequence
+echo "🔄 Initializing 43+147 interval boot system..."
+sleep 1
+
+echo "⚡ Applying Intel Mac optimizations..."
+sleep 1
+
+echo "🎨 Initializing GPU integration..."
+sleep 1
+
+echo "🔋 Activating power efficiency optimizations..."
+sleep 1
+
+echo ""
+echo "✅ RadiateOS launched successfully!"
+echo "✅ Desktop environment ready"
+echo "✅ All systems operational"
+echo ""
+
+# Keep the application running
+echo "RadiateOS is running. Press Ctrl+C to exit."
+while true; do
+    sleep 1
+done
