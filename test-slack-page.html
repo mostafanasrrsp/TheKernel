@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Slack Integration - RedSeaPortal</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #4A154B;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .test-section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .test-section h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .url-test {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .url-test a {
+            color: #0066cc;
+            text-decoration: none;
+            flex: 1;
+            margin-right: 10px;
+        }
+        .url-test a:hover {
+            text-decoration: underline;
+        }
+        .status {
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .status.working {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .status.failed {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        iframe {
+            width: 100%;
+            height: 400px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .slack-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #4A154B;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px 5px;
+        }
+        .slack-button:hover {
+            background: #611f69;
+        }
+        .code {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 RedSeaPortal Slack Integration Test</h1>
+        <p class="subtitle">Test all redirect chains and Slack endpoints</p>
+
+        <div class="test-section">
+            <h2>✅ Redirect Chain Tests</h2>
+            <div class="url-test">
+                <a href="http://www.redseaportal.com" target="_blank">http://www.redseaportal.com</a>
+                <span class="status working">WORKING</span>
+            </div>
+            <div class="url-test">
+                <a href="https://www.redseaportal.com" target="_blank">https://www.redseaportal.com</a>
+                <span class="status working">WORKING</span>
+            </div>
+            <div class="url-test">
+                <a href="https://redseaportal.com" target="_blank">https://redseaportal.com</a>
+                <span class="status working">LIVE</span>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🔧 Slack Integration Endpoints (After Firebase Deployment)</h2>
+            <div class="url-test">
+                <a href="https://redseaportal.com/slack" target="_blank">Slack Landing Page</a>
+                <span class="status pending">PENDING DEPLOYMENT</span>
+            </div>
+            <div class="url-test">
+                <a href="https://redseaportal.com/slack/oauth" target="_blank">Slack OAuth</a>
+                <span class="status pending">PENDING DEPLOYMENT</span>
+            </div>
+            <div class="url-test">
+                <a href="https://us-central1-redseaportal.cloudfunctions.net/slackBot" target="_blank">Slack Bot Endpoint</a>
+                <span class="status pending">PENDING DEPLOYMENT</span>
+            </div>
+            <div class="url-test">
+                <a href="https://redseaportal.com/api/status" target="_blank">API Status</a>
+                <span class="status pending">PENDING DEPLOYMENT</span>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🚀 Add to Slack Button (After Deployment)</h2>
+            <a href="https://slack.com/oauth/v2/authorize?client_id=YOUR_CLIENT_ID&scope=commands,chat:write,app_mentions:read&redirect_uri=https://redseaportal.com/slack/oauth/callback" class="slack-button">
+                Add to Slack
+            </a>
+            <p style="margin-top: 10px; color: #666; font-size: 14px;">
+                Note: Replace YOUR_CLIENT_ID with actual Slack App Client ID after creating the app
+            </p>
+        </div>
+
+        <div class="test-section">
+            <h2>📝 Manual Test Commands</h2>
+            <div class="code">
+# Test redirect chain
+curl -IL http://www.redseaportal.com
+
+# Test Slack endpoint (after deployment)
+curl -X POST https://us-central1-redseaportal.cloudfunctions.net/slackBot \
+  -H "Content-Type: application/json" \
+  -d '{"challenge": "test"}'
+
+# Test API status
+curl https://redseaportal.com/api/status
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🌐 Live Site Preview</h2>
+            <p>Current site at redseaportal.com (still on Wix):</p>
+            <iframe src="https://redseaportal.com" title="RedSeaPortal Live Site"></iframe>
+        </div>
+
+        <div class="test-section" style="background: #fff3cd;">
+            <h2>⚠️ Important Note</h2>
+            <p>The Slack integration pages will only work after:</p>
+            <ol style="margin-left: 20px; margin-top: 10px;">
+                <li>Firebase deployment is complete</li>
+                <li>DNS records are updated in Namecheap</li>
+                <li>Slack app is configured with proper OAuth credentials</li>
+                <li>Firebase functions are deployed with Slack bot code</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Test endpoints via JavaScript
+        console.log('Testing RedSeaPortal endpoints...');
+        
+        // Test main site
+        fetch('https://redseaportal.com')
+            .then(res => console.log('Main site:', res.status))
+            .catch(err => console.error('Main site error:', err));
+        
+        // Test API (will fail until Firebase deployment)
+        fetch('https://redseaportal.com/api/status')
+            .then(res => res.json())
+            .then(data => console.log('API Status:', data))
+            .catch(err => console.log('API not yet deployed (expected)'));
+    </script>
+</body>
+</html>
