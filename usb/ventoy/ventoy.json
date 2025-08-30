@@ -1,0 +1,30 @@
+{
+  "control": [
+    { "VTOY_DEFAULT_SEARCH_ROOT": "/" },
+    { "VTOY_MENU_TIMEOUT": 20 }
+  ],
+  "theme": {
+    "display_mode": "list",
+    "ventoy_left": 5,
+    "ventoy_top": 2,
+    "title": "RadiateOS 1.0 Boot Menu",
+    "prompt": "Select an installer ISO:",
+    "font": "unicode",
+    "color": {
+      "menu_fg": "#E6EAF2",
+      "menu_bg": "#121826",
+      "menu_hotkey_fg": "#22D3EE",
+      "menu_hotkey_bg": "#121826",
+      "menu_border": "#6D28D9",
+      "title_fg": "#22D3EE",
+      "title_bg": "#0B0F16"
+    }
+  },
+  "image_list": [
+    {
+      "image": "/ubuntu-22.04.4-desktop-amd64.iso",
+      "desc": "Ubuntu 22.04 LTS (RadiateOS Compatible)"
+    }
+  ]
+}
+
