@@ -6,6 +6,7 @@ set -euo pipefail
 #   radiate-gpu mode [on_demand|nvidia_only|intel_only|auto]
 #   radiate-gpu power [throttled|balanced|performance]
 #   radiate-gpu status
+#   radiate-gpu authorize <username>
 
 CONFIG_FILE=/etc/radiateos/pc-config.env
 
@@ -29,6 +30,11 @@ set_config() {
 restart_kiosk() {
   systemctl daemon-reload || true
   systemctl restart radiateos-kiosk.service || true
+}
+
+restart_polkit() {
+  systemctl daemon-reload || true
+  systemctl restart polkit.service || systemctl restart polkit || true
 }
 
 cmd=${1:-}
@@ -128,12 +134,41 @@ case "$cmd" in
     fi
     exit 0
     ;;
+  authorize)
+    ensure_root "$@"
+    user=${arg:-}
+    if [[ -z "$user" ]]; then
+      echo "Usage: $0 authorize <username>" >&2; exit 1
+    fi
+    if ! id "$user" >/dev/null 2>&1; then
+      echo "User not found: $user" >&2; exit 1
+    fi
+    # Ensure user is in sudo group for safety
+    if ! id -nG "$user" | grep -qw sudo; then
+      usermod -aG sudo "$user" || true
+    fi
+    # Write restrictive polkit rule to allow only this user
+    cat >/etc/polkit-1/rules.d/10-radiate-gpu-user.rules <<EOF
+polkit.addRule(function(action, subject) {
+  if (action && action.id === 'com.radiateos.radiate-gpu') {
+    if (subject && subject.user === '$user' && subject.local) {
+      return polkit.Result.YES;
+    }
+  }
+});
+EOF
+    # Remove any permissive group-based rule
+    rm -f /etc/polkit-1/rules.d/90-radiate-gpu.rules 2>/dev/null || true
+    restart_polkit
+    echo "Authorized user for passwordless radiate-gpu: $user"
+    ;;
   *)
     cat <<USAGE >&2
 Usage:
   $0 mode [on_demand|nvidia_only|intel_only|auto]
   $0 power [throttled|balanced|performance]
   $0 status
+  $0 authorize <username>
 USAGE
     exit 1
     ;;
