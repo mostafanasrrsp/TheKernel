@@ -88,8 +88,31 @@ fi
 if [ -f "$BASE_DIR/pc-install/polkit/com.radiateos.radiate-gpu.policy" ]; then
   install -m 0644 "$BASE_DIR/pc-install/polkit/com.radiateos.radiate-gpu.policy" /usr/share/polkit-1/actions/com.radiateos.radiate-gpu.policy || true
 fi
-if [ -f "$BASE_DIR/pc-install/polkit/90-radiate-gpu.rules" ]; then
-  install -m 0644 "$BASE_DIR/pc-install/polkit/90-radiate-gpu.rules" /etc/polkit-1/rules.d/90-radiate-gpu.rules || true
+# Create a user-specific polkit rule to allow passwordless radiate-gpu
+TARGET_USER="${SUDO_USER:-}"
+if [ -z "$TARGET_USER" ]; then
+  TARGET_USER=$(logname 2>/dev/null || who | awk 'NR==1{print $1}')
+fi
+if id "$TARGET_USER" >/dev/null 2>&1; then
+  # Ensure user is a member of sudo
+  if ! id -nG "$TARGET_USER" | grep -qw sudo; then
+    usermod -aG sudo "$TARGET_USER" || true
+  fi
+  # Write restrictive rule for this exact user
+  cat >/etc/polkit-1/rules.d/10-radiate-gpu-user.rules <<EOF
+polkit.addRule(function(action, subject) {
+  if (action && action.id === 'com.radiateos.radiate-gpu') {
+    if (subject && subject.user === '$TARGET_USER' && subject.local) {
+      return polkit.Result.YES;
+    }
+  }
+});
+EOF
+  # Remove permissive group-based rule if present
+  rm -f /etc/polkit-1/rules.d/90-radiate-gpu.rules 2>/dev/null || true
+  # Restart polkit to apply
+  systemctl daemon-reload || true
+  systemctl restart polkit.service || systemctl restart polkit || true
 fi
 
 # Apply GPU mode selection from wizard (if available)
