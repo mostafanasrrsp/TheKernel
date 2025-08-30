@@ -1,0 +1,114 @@
+# Linear Integration Configuration
+
+# Automatically create Linear issues from GitHub issues
+auto_create_issues:
+  enabled: true
+  team: RTOS-CORE
+  labels:
+    - from-github
+  
+# Issue title format
+issue_title_format: "[GH-{{number}}] {{title}}"
+
+# Map GitHub labels to Linear labels
+label_mapping:
+  bug: bug
+  enhancement: enhancement
+  documentation: documentation
+  good first issue: good-first-issue
+  help wanted: help-wanted
+  critical: critical
+  high priority: high
+  medium priority: medium
+  low priority: low
+
+# Map GitHub issue states to Linear states
+state_mapping:
+  opened: Backlog
+  closed: Done
+  reopened: Todo
+
+# Pull request integration
+pull_requests:
+  # Link PRs to Linear issues using [RTOS-XXX] format
+  link_pattern: '\[RTOS-(\d+)\]'
+  
+  # Auto-update Linear issue when PR is created
+  update_on_create: true
+  
+  # Auto-update Linear issue when PR is merged
+  update_on_merge: true
+  set_state_on_merge: Done
+  
+  # Add PR link to Linear issue
+  add_pr_link: true
+
+# Sync comments between GitHub and Linear
+sync_comments:
+  enabled: true
+  # Only sync comments from these users (leave empty for all)
+  allowed_users: []
+  
+# Project mapping (GitHub projects to Linear projects)
+project_mapping:
+  "RadiateOS Core": RTOS-CORE
+  "RadiateOS Apps": RTOS-APPS
+  "RadiateOS Platform": RTOS-PLATFORM
+
+# Milestone mapping (GitHub milestones to Linear cycles)
+milestone_mapping:
+  "v1.0.0": "Cycle 1"
+  "v1.1.0": "Cycle 2"
+  "v2.0.0": "Cycle 3"
+
+# Custom fields mapping
+custom_fields:
+  github_url: "{{html_url}}"
+  github_number: "{{number}}"
+  github_author: "{{user.login}}"
+
+# Webhook events to listen for
+webhook_events:
+  - issues
+  - issue_comment
+  - pull_request
+  - pull_request_review
+  - pull_request_review_comment
+
+# Team assignment rules
+assignment_rules:
+  # Assign based on GitHub labels
+  - label: kernel
+    team: CORE
+  - label: ui
+    team: UI
+  - label: platform
+    team: PLATFORM
+  - label: qa
+    team: QA
+
+# Priority rules based on labels
+priority_rules:
+  - label: critical
+    priority: 0  # Urgent
+  - label: "high priority"
+    priority: 1  # High
+  - label: "medium priority"
+    priority: 2  # Medium
+  - label: "low priority"
+    priority: 3  # Low
+
+# Estimate rules based on labels
+estimate_rules:
+  - label: "size: XS"
+    estimate: 1
+  - label: "size: S"
+    estimate: 2
+  - label: "size: M"
+    estimate: 3
+  - label: "size: L"
+    estimate: 5
+  - label: "size: XL"
+    estimate: 8
+  - label: "size: XXL"
+    estimate: 13

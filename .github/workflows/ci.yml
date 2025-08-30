@@ -1,0 +1,393 @@
+name: RadiateOS CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+    tags:
+      - 'v*'
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '0 0 * * 0' # Weekly build on Sunday
+
+env:
+  SWIFT_VERSION: '5.9'
+  XCODE_VERSION: '15.0'
+
+jobs:
+  # Test job for multiple platforms
+  test:
+    name: Test on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        include:
+          - os: ubuntu-latest
+            swift-version: '5.9'
+          - os: macos-latest
+            xcode-version: '15.0'
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Swift (Linux)
+      if: matrix.os == 'ubuntu-latest'
+      uses: swift-actions/setup-swift@v1
+      with:
+        swift-version: ${{ matrix.swift-version }}
+    
+    - name: Select Xcode (macOS)
+      if: matrix.os == 'macos-latest'
+      run: sudo xcode-select -s /Applications/Xcode_${{ matrix.xcode-version }}.app
+    
+    - name: Install Dependencies
+      run: |
+        if [ "${{ matrix.os }}" == "ubuntu-latest" ]; then
+          sudo apt-get update
+          sudo apt-get install -y libssl-dev libcurl4-openssl-dev
+        elif [ "${{ matrix.os }}" == "macos-latest" ]; then
+          brew install swift-format
+        fi
+    
+    - name: Build
+      run: |
+        if [ "${{ matrix.os }}" == "macos-latest" ]; then
+          cd RadiateOS
+          xcodebuild -project RadiateOS.xcodeproj -scheme RadiateOS -configuration Debug build
+        else
+          swift build -v
+        fi
+    
+    - name: Run Tests
+      run: |
+        if [ "${{ matrix.os }}" == "macos-latest" ]; then
+          cd RadiateOS
+          xcodebuild test -project RadiateOS.xcodeproj -scheme RadiateOS -destination 'platform=macOS'
+        else
+          swift test -v
+        fi
+    
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: test-results-${{ matrix.os }}
+        path: |
+          .build/debug/*.xctest
+          RadiateOS/build/Logs/Test/*.xcresult
+
+  # Lint and format check
+  lint:
+    name: Lint and Format
+    runs-on: macos-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Install SwiftLint
+      run: brew install swiftlint
+    
+    - name: Run SwiftLint
+      run: swiftlint lint --reporter github-actions-logging
+    
+    - name: Check Swift Format
+      run: |
+        brew install swift-format
+        swift-format lint --recursive Sources/ Tests/
+
+  # Security scan
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Run Security Scan
+      uses: github/super-linter@v4
+      env:
+        DEFAULT_BRANCH: main
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        VALIDATE_SWIFT: true
+    
+    - name: Dependency Check
+      run: |
+        # Check for known vulnerabilities in dependencies
+        swift package show-dependencies --format json | \
+        jq -r '.dependencies[].url' | \
+        xargs -I {} echo "Checking: {}"
+
+  # Performance benchmarks
+  benchmark:
+    name: Performance Benchmarks
+    runs-on: macos-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install Dependencies
+      run: |
+        pip install numpy matplotlib pandas
+    
+    - name: Run Benchmarks
+      run: |
+        python3 system_benchmark.py --output benchmark_results.json
+    
+    - name: Upload Benchmark Results
+      uses: actions/upload-artifact@v3
+      with:
+        name: benchmark-results
+        path: benchmark_results.json
+    
+    - name: Comment PR with Benchmark Results
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const fs = require('fs');
+          const results = JSON.parse(fs.readFileSync('benchmark_results.json', 'utf8'));
+          
+          const comment = `## Performance Benchmark Results
+          
+          | Metric | Value | Change |
+          |--------|-------|--------|
+          | Boot Time | ${results.boot_time}s | - |
+          | Memory Usage | ${results.memory_usage}MB | - |
+          | CPU Performance | ${results.cpu_score} | - |
+          | GPU Performance | ${results.gpu_score} | - |
+          `;
+          
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: comment
+          });
+
+  # Build artifacts for release
+  build:
+    name: Build Release Artifacts
+    needs: [test, lint, security]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        include:
+          - os: ubuntu-latest
+            artifact-name: radiateos-linux
+          - os: macos-latest
+            artifact-name: radiateos-macos
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Build Environment
+      run: |
+        if [ "${{ matrix.os }}" == "ubuntu-latest" ]; then
+          sudo apt-get update
+          sudo apt-get install -y build-essential
+        elif [ "${{ matrix.os }}" == "macos-latest" ]; then
+          sudo xcode-select -s /Applications/Xcode_15.0.app
+        fi
+    
+    - name: Build Release
+      run: |
+        if [ "${{ matrix.os }}" == "macos-latest" ]; then
+          cd RadiateOS
+          xcodebuild archive \
+            -project RadiateOS.xcodeproj \
+            -scheme RadiateOS \
+            -configuration Release \
+            -archivePath build/RadiateOS.xcarchive
+          
+          xcodebuild -exportArchive \
+            -archivePath build/RadiateOS.xcarchive \
+            -exportPath build/export \
+            -exportOptionsPlist scripts/export_options.plist
+        else
+          swift build -c release
+        fi
+    
+    - name: Create Package
+      run: |
+        if [ "${{ matrix.os }}" == "macos-latest" ]; then
+          ./build_and_package.sh
+          mv RadiateOS-Installer.iso ${{ matrix.artifact-name }}.iso
+        else
+          tar -czf ${{ matrix.artifact-name }}.tar.gz .build/release/
+        fi
+    
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ matrix.artifact-name }}
+        path: |
+          ${{ matrix.artifact-name }}.*
+          RadiateOS/build/export/*.app
+
+  # Deploy and release
+  release:
+    name: Create Release
+    needs: build
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Download Artifacts
+      uses: actions/download-artifact@v3
+    
+    - name: Create Release Notes
+      id: release_notes
+      run: |
+        VERSION=${GITHUB_REF#refs/tags/}
+        echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+        
+        cat > release_notes.md << EOF
+        # RadiateOS $VERSION
+        
+        ## What's New
+        - Improved optical CPU performance
+        - Enhanced memory management
+        - New GPU integration features
+        - Bug fixes and stability improvements
+        
+        ## Installation
+        
+        ### macOS
+        Download \`radiateos-macos.dmg\` and follow the installation wizard.
+        
+        ### Linux
+        Extract \`radiateos-linux.tar.gz\` and run \`./install.sh\`
+        
+        ### Creating Bootable USB
+        Use \`radiateos-macos.iso\` or \`radiateos-linux.iso\` with your preferred USB creation tool.
+        
+        ## System Requirements
+        - 8GB RAM minimum
+        - 20GB free disk space
+        - 64-bit processor
+        
+        ## Known Issues
+        - See [Issues](https://github.com/${{ github.repository }}/issues)
+        
+        ## Contributors
+        Thanks to all contributors who made this release possible!
+        EOF
+    
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        body_path: release_notes.md
+        files: |
+          radiateos-macos/*
+          radiateos-linux/*
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # Documentation deployment
+  docs:
+    name: Deploy Documentation
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    
+    - name: Build Documentation
+      run: |
+        # Install documentation generator
+        npm install -g documentation
+        
+        # Generate API docs
+        documentation build Sources/**/*.swift -f html -o docs/api
+        
+        # Copy markdown docs
+        cp README.md docs/
+        cp INSTALLATION_GUIDE.md docs/
+        cp LICENSE docs/
+    
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs
+
+  # Docker image build
+  docker:
+    name: Build Docker Image
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+    
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+    
+    - name: Build and Push
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        file: ./pc-build/Dockerfile
+        push: true
+        tags: |
+          radiateos/radiateos:latest
+          radiateos/radiateos:${{ github.sha }}
+        cache-from: type=registry,ref=radiateos/radiateos:buildcache
+        cache-to: type=registry,ref=radiateos/radiateos:buildcache,mode=max
+
+  # Notification
+  notify:
+    name: Send Notifications
+    needs: [test, build, release]
+    runs-on: ubuntu-latest
+    if: always()
+    
+    steps:
+    - name: Send Discord Notification
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      run: |
+        STATUS="success"
+        COLOR="3066993"
+        
+        if [ "${{ needs.test.result }}" != "success" ] || [ "${{ needs.build.result }}" != "success" ]; then
+          STATUS="failure"
+          COLOR="15158332"
+        fi
+        
+        curl -X POST $DISCORD_WEBHOOK \
+          -H "Content-Type: application/json" \
+          -d "{
+            \"embeds\": [{
+              \"title\": \"RadiateOS Build $STATUS\",
+              \"color\": $COLOR,
+              \"fields\": [
+                {\"name\": \"Branch\", \"value\": \"${{ github.ref_name }}\", \"inline\": true},
+                {\"name\": \"Commit\", \"value\": \"${{ github.sha }}\", \"inline\": true},
+                {\"name\": \"Author\", \"value\": \"${{ github.actor }}\", \"inline\": true}
+              ],
+              \"timestamp\": \"$(date -u +%Y-%m-%dT%H:%M:%S.000Z)\"
+            }]
+          }"
