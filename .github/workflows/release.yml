@@ -25,6 +25,8 @@ jobs:
           cp usb/ventoy/theme/theme.txt dist/usb/ventoy/theme/
           # Create a zip bundle for convenience
           (cd dist && zip -r radiateos-usb-and-installer.zip INSTALL_ON_HP_PAVILION.sh pc-install usb)
+          # Create checksums for primary assets
+          (cd dist && sha256sum radiateos-usb-and-installer.zip INSTALL_ON_HP_PAVILION.sh > CHECKSUMS.txt)
           echo "Assets prepared:"
           ls -la dist
 
@@ -34,9 +36,9 @@ jobs:
           files: |
             dist/radiateos-usb-and-installer.zip
             dist/INSTALL_ON_HP_PAVILION.sh
+            dist/CHECKSUMS.txt
             dist/pc-install/**
             dist/usb/**
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
