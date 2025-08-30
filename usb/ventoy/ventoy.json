@@ -5,6 +5,8 @@
   ],
   "theme": {
     "display_mode": "list",
+    "file": "/ventoy/theme/theme.txt",
+    "gfxmode": "1920x1080",
     "ventoy_left": 5,
     "ventoy_top": 2,
     "title": "RadiateOS 1.0 Boot Menu",
@@ -27,4 +29,3 @@
     }
   ]
 }
-

@@ -88,6 +88,23 @@ if [[ ! -d "$APP_DIR/pc-preview" ]]; then
 fi
 
 echo "[6/6] Setting up kiosk systemd service"
+KIOSK_ENV=/etc/radiateos/kiosk.env
+mkdir -p /etc/radiateos
+
+# Detect executable or fallback to npm start
+EXEC_CMD=""
+if [[ -x "$APP_DIR/pc-preview/RadiateOS" ]]; then
+  EXEC_CMD="$APP_DIR/pc-preview/RadiateOS"
+elif [[ -f "$APP_DIR/pc-preview/package.json" ]]; then
+  EXEC_CMD="cd $APP_DIR/pc-preview && npm install --omit=dev && npm run start"
+elif command -v electron >/dev/null 2>&1 && [[ -f "$APP_DIR/pc-preview/main.js" ]]; then
+  EXEC_CMD="electron $APP_DIR/pc-preview"
+else
+  EXEC_CMD="/usr/bin/env bash -lc 'echo RadiateOS preview not found; sleep 5'"
+fi
+
+echo "EXEC_CMD=$EXEC_CMD" > "$KIOSK_ENV"
+
 cat >/etc/systemd/system/radiateos-kiosk.service <<'EOF'
 [Unit]
 Description=RadiateOS PC Kiosk
@@ -97,7 +114,8 @@ Wants=graphical.target
 [Service]
 Type=simple
 Environment=ELECTRON_ENABLE_LOGGING=1
-ExecStart=/usr/bin/env bash -lc 'cd /opt/radiateos-pc/pc-preview && npm install --omit=dev && npm run start'
+EnvironmentFile=/etc/radiateos/kiosk.env
+ExecStart=/usr/bin/env bash -lc "$EXEC_CMD"
 Restart=on-failure
 RestartSec=3
 User=root

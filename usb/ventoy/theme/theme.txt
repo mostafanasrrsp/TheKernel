@@ -1,0 +1,21 @@
+title-text: "RadiateOS 1.0 Boot Menu"
+
+# Background image (PNG/JPG). Place your file at /ventoy/theme/background.png
+desktop-image: "/ventoy/theme/background.png"
+
+# Colors
+title-color: "cyan"
+message-color: "white"
+menu-color: "white/black"
+menu-border: "magenta"
+menu-selected: "black/cyan"
+menu-hotkey: "cyan/black"
+label-color: "white/black"
+
+# Layout
+menu-width: 70
+menu-height: 18
+menu-padding: 2
+menu-margin: 2
+menu-resize: 1
+
