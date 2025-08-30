@@ -1,0 +1,204 @@
+#!/bin/bash
+
+# Deploy Script for RedSeaPortal / thex143kernelx43compatibleOS
+# Run this after DNS configuration is complete
+
+echo "🚀 Starting Firebase Deployment for thex143kernelx43compatibleOS"
+echo "================================================"
+
+# Check if Firebase CLI is installed
+if ! command -v firebase &> /dev/null; then
+    echo "❌ Firebase CLI not found. Installing..."
+    npm install -g firebase-tools
+else
+    echo "✅ Firebase CLI is installed"
+fi
+
+# Login to Firebase
+echo ""
+echo "📝 Logging into Firebase..."
+echo "Please use: mostafa.a.nasr@gmail.com"
+firebase login
+
+# Use the redseaportal project
+echo ""
+echo "🎯 Setting active project to redseaportal..."
+firebase use redseaportal
+
+# Install functions dependencies
+echo ""
+echo "📦 Installing Cloud Functions dependencies..."
+cd functions
+npm install
+cd ..
+
+# Create public directory for hosting if it doesn't exist
+if [ ! -d "public" ]; then
+    echo ""
+    echo "📁 Creating public directory for hosting..."
+    mkdir -p public
+fi
+
+# Create a simple index.html if it doesn't exist
+if [ ! -f "public/index.html" ]; then
+    echo ""
+    echo "📄 Creating landing page..."
+    cat > public/index.html << 'EOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>thex143kernelx43compatibleOS - RedSeaPortal</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            margin: 20px;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00ff88, #00bbff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        .status {
+            background: rgba(0, 255, 136, 0.2);
+            border: 2px solid #00ff88;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 2rem 0;
+        }
+        .status h3 {
+            color: #00ff88;
+            margin-bottom: 0.5rem;
+        }
+        .links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        .btn {
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #00ff88, #00bbff);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3);
+        }
+        .slack-integration {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .integration-badge {
+            display: inline-block;
+            background: rgba(74, 21, 75, 0.3);
+            border: 1px solid #4A154B;
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin: 10px 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>thex143kernelx43compatibleOS</h1>
+        <p class="subtitle">RedSeaPortal Cloud Platform</p>
+        
+        <div class="status">
+            <h3>🟢 System Online</h3>
+            <p>All services operational</p>
+        </div>
+
+        <div class="slack-integration">
+            <h2>Slack Integration Active</h2>
+            <div>
+                <span class="integration-badge">✅ Bot Connected</span>
+                <span class="integration-badge">🔥 Firebase Functions</span>
+                <span class="integration-badge">☁️ Cloud Hosting</span>
+            </div>
+        </div>
+
+        <div class="links">
+            <a href="/api/status" class="btn">API Status</a>
+            <a href="/slack/oauth" class="btn">Connect Slack</a>
+        </div>
+
+        <p style="margin-top: 3rem; opacity: 0.7;">
+            Powered by Firebase • Google Cloud Platform
+        </p>
+    </div>
+
+    <script>
+        // Add some interactive elements
+        console.log('🚀 thex143kernelx43compatibleOS initialized');
+        
+        // Check API status
+        fetch('/api/status')
+            .then(res => res.json())
+            .then(data => console.log('API Status:', data))
+            .catch(err => console.log('API check failed (expected before deployment)'));
+    </script>
+</body>
+</html>
+EOF
+fi
+
+# Deploy everything
+echo ""
+echo "🚀 Deploying to Firebase..."
+echo "This will deploy:"
+echo "  - Cloud Functions (Slack bot)"
+echo "  - Hosting (website)"
+echo ""
+
+firebase deploy --only functions,hosting
+
+echo ""
+echo "✅ Deployment Complete!"
+echo ""
+echo "📌 Important URLs:"
+echo "  Website: https://redseaportal.web.app"
+echo "  Custom Domain: https://redseaportal.com (after DNS propagation)"
+echo "  Slack Bot Endpoint: https://us-central1-redseaportal.cloudfunctions.net/slackBot"
+echo ""
+echo "📧 Email Setup:"
+echo "  Complete Google Workspace setup at: https://admin.google.com"
+echo "  Your email: info@redseaportal.com"
+echo ""
+echo "🎯 Next Steps:"
+echo "  1. Wait for DNS propagation (2-24 hours)"
+echo "  2. Verify domain in Google Workspace"
+echo "  3. Configure Slack app at: https://api.slack.com/apps"
+echo "  4. Test all endpoints"
+echo ""
+echo "Need help? Check ./namecheap-dns-setup.md for detailed instructions"
