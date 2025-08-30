@@ -72,6 +72,23 @@ if [ -f "$(dirname "$0")/pc-install/install_wizard.sh" ]; then
   bash -euo pipefail "$(dirname "$0")/pc-install/install_wizard.sh" || true
 fi
 
+# Apply GPU mode selection from wizard (if available)
+CONFIG_FILE=/etc/radiateos/pc-config.env
+if [ -f "$CONFIG_FILE" ] && command -v prime-select >/dev/null 2>&1; then
+  # shellcheck disable=SC1090
+  . "$CONFIG_FILE"
+  case "${GPU_MODE:-auto}" in
+    on_demand)
+      prime-select on-demand || true ;;
+    nvidia_only)
+      prime-select nvidia || true ;;
+    intel_only)
+      prime-select intel || true ;;
+    *)
+      prime-select on-demand || true ;;
+  esac
+fi
+
 echo "[5/6] Installing RadiateOS PC Preview"
 APP_DIR=/opt/radiateos-pc
 mkdir -p "$APP_DIR"
@@ -101,6 +118,19 @@ elif command -v electron >/dev/null 2>&1 && [[ -f "$APP_DIR/pc-preview/main.js" 
   EXEC_CMD="electron $APP_DIR/pc-preview"
 else
   EXEC_CMD="/usr/bin/env bash -lc 'echo RadiateOS preview not found; sleep 5'"
+fi
+
+# Wrap kiosk with GPU offload when on-demand or nvidia-only is selected
+if [ -f "$CONFIG_FILE" ]; then
+  # shellcheck disable=SC1090
+  . "$CONFIG_FILE"
+  case "${GPU_MODE:-auto}" in
+    on_demand|nvidia_only)
+      if command -v gpu-run >/dev/null 2>&1; then
+        EXEC_CMD="gpu-run $EXEC_CMD"
+      fi
+      ;;
+  esac
 fi
 
 echo "EXEC_CMD=$EXEC_CMD" > "$KIOSK_ENV"
