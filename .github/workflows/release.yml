@@ -1,0 +1,42 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare assets
+        run: |
+          set -euxo pipefail
+          mkdir -p dist/assets
+          # Core installer and helpers
+          cp INSTALL_ON_HP_PAVILION.sh dist/
+          cp -r pc-install dist/
+          # Ventoy theming and guide
+          mkdir -p dist/usb/ventoy/theme
+          cp usb/VENTOY_USB_GUIDE.md dist/usb/
+          cp usb/ventoy/ventoy.json dist/usb/ventoy/
+          cp usb/ventoy/theme/theme.txt dist/usb/ventoy/theme/
+          # Create a zip bundle for convenience
+          (cd dist && zip -r radiateos-usb-and-installer.zip INSTALL_ON_HP_PAVILION.sh pc-install usb)
+          echo "Assets prepared:"
+          ls -la dist
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/radiateos-usb-and-installer.zip
+            dist/INSTALL_ON_HP_PAVILION.sh
+            dist/pc-install/**
+            dist/usb/**
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
