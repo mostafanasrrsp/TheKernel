@@ -44,7 +44,7 @@ cat > "$VM_DIR/config.plist" << 'EOF'
     <key>Name</key>
     <string>RadiateOS</string>
     <key>Notes</key>
-    <string>RadiateOS - Optical Computing Operating System</string>
+    <string>RadiateOS - Optical Computing Operating System for Intel Macs</string>
     <key>Architecture</key>
     <string>x86_64</string>
     <key>Backend</key>
@@ -61,6 +61,10 @@ cat > "$VM_DIR/config.plist" << 'EOF'
         <dict>
             <key>ForcePS2Controller</key>
             <false/>
+            <key>OS</key>
+            <string>macOS</string>
+            <key>Version</key>
+            <string>12.0</string>
         </dict>
     </dict>
     <key>Drives</key>
