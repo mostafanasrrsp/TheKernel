@@ -65,11 +65,20 @@ EOF
 
 # Optional GPU offload wrappers and classic setup wizard
 echo "Installing GPU offload wrappers and running setup wizard..."
-if [ -f "$(dirname "$0")/pc-install/gpu_offload_wrappers.sh" ]; then
-  bash -euo pipefail "$(dirname "$0")/pc-install/gpu_offload_wrappers.sh" || true
+BASE_DIR="$(cd "$(dirname "$0")" && pwd)"
+if [ -f "$BASE_DIR/pc-install/gpu_offload_wrappers.sh" ]; then
+  bash -euo pipefail "$BASE_DIR/pc-install/gpu_offload_wrappers.sh" || true
 fi
-if [ -f "$(dirname "$0")/pc-install/install_wizard.sh" ]; then
-  bash -euo pipefail "$(dirname "$0")/pc-install/install_wizard.sh" || true
+if [ -f "$BASE_DIR/pc-install/install_wizard.sh" ]; then
+  bash -euo pipefail "$BASE_DIR/pc-install/install_wizard.sh" || true
+fi
+
+# Install power/toggle helpers
+if [ -f "$BASE_DIR/pc-install/nvidia_power_profile.sh" ]; then
+  install -m 0755 "$BASE_DIR/pc-install/nvidia_power_profile.sh" /usr/local/bin/nvidia_power_profile.sh || true
+fi
+if [ -f "$BASE_DIR/pc-install/radiate_gpu_toggle.sh" ]; then
+  install -m 0755 "$BASE_DIR/pc-install/radiate_gpu_toggle.sh" /usr/local/bin/radiate-gpu || true
 fi
 
 # Apply GPU mode selection from wizard (if available)
@@ -87,6 +96,13 @@ if [ -f "$CONFIG_FILE" ] && command -v prime-select >/dev/null 2>&1; then
     *)
       prime-select on-demand || true ;;
   esac
+fi
+
+# Apply NVIDIA power profile if NVIDIA present
+if [ -f "$CONFIG_FILE" ] && command -v nvidia-smi >/dev/null 2>&1; then
+  # shellcheck disable=SC1090
+  . "$CONFIG_FILE"
+  /usr/local/bin/nvidia_power_profile.sh "${POWER_PROFILE:-balanced}" || true
 fi
 
 echo "[5/6] Installing RadiateOS PC Preview"
