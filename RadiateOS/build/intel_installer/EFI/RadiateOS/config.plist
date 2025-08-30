@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Platform</key>
+    <string>Intel Mac</string>
+    <key>BrandName</key>
+    <string>RadiateOS</string>
+    <key>HideWindowsBranding</key>
+    <true/>
+    <key>DisableBSOD</key>
+    <true/>
+    <key>EnableKioskMode</key>
+    <true/>
+    <key>BootArgs</key>
+    <string>-v rad=no windows=no</string>
+    <key>KernelFlags</key>
+    <string>rad=1 nomodeset</string>
+</dict>
+</plist>
