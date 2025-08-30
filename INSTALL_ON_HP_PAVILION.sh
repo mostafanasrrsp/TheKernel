@@ -21,6 +21,8 @@ DEBIAN_FRONTEND=noninteractive apt-get install -y \
   git unzip alsa-utils pulseaudio psmisc \
   vulkan-tools mesa-utils libvulkan1 \
   chromium-browser firefox \
+  python3-gi gir1.2-appindicator3-0.1 libayatana-appindicator3-1 \
+  xterm \
   libnss3 libatk-bridge2.0-0 libgtk-3-0 libx11-xcb1 libxcomposite1 libxrandr2 \
   libasound2 libpangocairo-1.0-0 libxdamage1 libxfixes3 libgbm1 libpango-1.0-0 \
   libcairo2 whiptail || true
@@ -108,6 +110,8 @@ fi
 echo "[5/6] Installing RadiateOS PC Preview"
 APP_DIR=/opt/radiateos-pc
 mkdir -p "$APP_DIR"
+TOOLS_DIR=$APP_DIR/tools
+mkdir -p "$TOOLS_DIR"
 
 if [[ -d /workspace/pc-preview ]]; then
   # Development path
@@ -173,6 +177,37 @@ EOF
 
 systemctl daemon-reload
 systemctl enable radiateos-kiosk.service
+
+# Install desktop launchers and tray indicator (optional in desktop sessions)
+echo "Installing GPU status launcher and tray indicator..."
+if [ -f "$BASE_DIR/pc-install/radiate_tray.py" ]; then
+  install -m 0755 "$BASE_DIR/pc-install/radiate_tray.py" "$TOOLS_DIR/radiate_tray.py" || true
+fi
+if [ -f "$BASE_DIR/pc-install/icons/radiate_tray.svg" ]; then
+  install -m 0644 "$BASE_DIR/pc-install/icons/radiate_tray.svg" "$TOOLS_DIR/radiate_tray.svg" || true
+fi
+
+cat >/usr/share/applications/radiate-gpu-status.desktop <<'DESK'
+[Desktop Entry]
+Name=RadiateOS GPU Status
+Comment=Show current GPU mode and power info
+Exec=sh -c "x-terminal-emulator -e bash -lc 'radiate-gpu status; echo; read -n1 -rsp \"Press any key to close...\"'"
+Icon=utilities-terminal
+Terminal=false
+Type=Application
+Categories=System;Utility;
+DESK
+
+cat >/etc/xdg/autostart/radiate-gpu-tray.desktop <<'AUTODESK'
+[Desktop Entry]
+Type=Application
+Name=RadiateOS GPU Tray
+Comment=Quickly switch GPU mode and power profile
+Exec=python3 /opt/radiateos-pc/tools/radiate_tray.py
+Icon=/opt/radiateos-pc/tools/radiate_tray.svg
+X-GNOME-Autostart-enabled=true
+OnlyShowIn=GNOME;Unity;X-Cinnamon;XFCE;LXQt;KDE;
+AUTODESK
 
 echo "Installation complete. Reboot recommended."
 echo "- NVIDIA drivers installed (if supported)"
